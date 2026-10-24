@@ -5,8 +5,8 @@ const base = process.env.DOCS_BASE || '/cmu-agents/'
 
 export default defineConfig({
   lang: 'zh-CN',
-  title: 'CMU 11-768 · AI Agents',
-  description: '卡内基梅隆大学 11-768 AI Agents 课程中文讲义笔记',
+  title: 'CMU AI Agents 讲义',
+  description: '卡内基梅隆大学 11-768 AI Agents 课程中文详细讲义',
   // Project site on GitHub Pages: https://xbsheng.github.io/cmu-agents/
   // Override with DOCS_BASE=/ when deploying to a custom domain.
   base,
@@ -28,6 +28,7 @@ export default defineConfig({
     ['meta', { property: 'og:image', content: `${siteUrl}logo.png` }]
   ],
   themeConfig: {
+    logo: { src: '/logo-nav.png', alt: 'CMU 11-768 AI Agents' },
     nav: [
       { text: '课程笔记', link: '/notes/' },
       { text: '课程主页', link: 'https://www.cmu-agents.com' }
@@ -38,18 +39,18 @@ export default defineConfig({
           text: '导论与 Agent 能力',
           items: [
             { text: '1a · 课程概览', link: '/notes/lecture-01-agents' },
-            { text: '1b · 工具使用', link: '/notes/lecture-02-tool-use' },
+            { text: '1b · Tool Use', link: '/notes/lecture-02-tool-use' },
             { text: '2a · 长上下文 Agent', link: '/notes/lecture-03-long-context' },
-            { text: '2b · 技能与记忆', link: '/notes/lecture-04-memory-and-skills' },
-            { text: '3a · 规划与多 Agent', link: '/notes/lecture-05-planning' }
+            { text: '2b · Skills & Memory', link: '/notes/lecture-04-memory-and-skills' },
+            { text: '3a · Planning与多 Agent', link: '/notes/lecture-05-planning' }
           ]
         },
         {
           text: '应用领域',
           items: [
-            { text: '3b · 编程 Agent', link: '/notes/lecture-06-coding-agents' },
-            { text: '4a · 计算机使用 Agent', link: '/notes/lecture-07-computer-use-agents' },
-            { text: '5b · 深度研究 Agent', link: '/notes/lecture-10-deep-research-agents' }
+            { text: '3b · Coding Agent', link: '/notes/lecture-06-coding-agents' },
+            { text: '4a · Computer Use Agent', link: '/notes/lecture-07-computer-use-agents' },
+            { text: '5b · Deep Research Agent', link: '/notes/lecture-10-deep-research-agents' }
           ]
         },
         {
@@ -57,7 +58,7 @@ export default defineConfig({
           items: [
             { text: '4b · SFT', link: '/notes/lecture-08-sft' },
             { text: '5a · RL 基础', link: '/notes/lecture-09-rl-basics' },
-            { text: '6a · 高级 RL', link: '/notes/lecture-11-rl-advanced' },
+            { text: '6a · RL 高级', link: '/notes/lecture-11-rl-advanced' },
             { text: '6b · RL 系统', link: '/notes/lecture-12-rl-systems' }
           ]
         },

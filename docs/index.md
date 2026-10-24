@@ -10,14 +10,14 @@ hero:
     alt: CMU 11-768 AI Agents 课程标志
   actions:
     - theme: brand
-      text: 浏览 15 讲笔记
+      text: 浏览讲义
       link: /notes/
     - theme: alt
       text: 课程目录
       link: /notes/
 
 features:
-  - title: 15 讲详细讲义
+  - title: 详细讲义
     details: 覆盖 agent 能力、领域、训练、安全与框架，每讲包含概念、方法、实验、局限与延伸阅读。
   - title: 视频 + 课件对照
     details: 关键论点标注 YouTube 时间戳，关键页面保留高清原始截图。
