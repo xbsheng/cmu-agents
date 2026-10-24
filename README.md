@@ -39,6 +39,9 @@
 
 ### 1a · Tue, Aug 25 — Course Overview: What Is an Agent?
 
+<details>
+<summary>展开 Slides / 录像 / 阅读材料</summary>
+
 - 模块: Introduction and Agent Capabilities
 - Slides: [Lecture 1 slides](slides/lecture-01-agents.pdf)
 - 录像: [Lecture 1 recording](https://www.youtube.com/watch?v=UwfjzyLnvMg&list=PLSN0qpDfUvTM&index=1)
@@ -47,7 +50,12 @@
   - [ReAct](https://arxiv.org/abs/2210.03629)
   - [Mini-SWE-Agent](https://github.com/swe-agent/mini-swe-agent)
 
+</details>
+
 ### 1b · Thu, Aug 27 — Agent Capabilities 1: Tool Use
+
+<details>
+<summary>展开 Slides / 录像 / 阅读材料</summary>
 
 - 模块: Introduction and Agent Capabilities
 - Slides: [Lecture 2 slides](slides/lecture-02-tool-use.pdf)
@@ -85,7 +93,12 @@
   - [FastMCP Token Verification](https://gofastmcp.com/servers/auth/token-verification)
   - [FastMCP Bearer Client Authentication](https://gofastmcp.com/clients/auth/bearer)
 
+</details>
+
 ### 2a · Tue, Sep 1 — Agent Capabilities 2: Context Management for Long-Context Agents
+
+<details>
+<summary>展开 Slides / 录像 / 阅读材料</summary>
 
 - 模块: Introduction and Agent Capabilities
 - Slides: [Lecture 3 slides](slides/lecture-03-long-context.pdf)
@@ -134,7 +147,12 @@
   - [OpenHands](https://github.com/All-Hands-AI/OpenHands)
   - [ReSum](https://arxiv.org/abs/2509.13313)
 
+</details>
+
 ### 2b · Thu, Sep 3 — Agent Capabilities 3: Skills and Memory
+
+<details>
+<summary>展开 Slides / 录像 / 阅读材料</summary>
 
 - 模块: Introduction and Agent Capabilities
 - Slides: [Lecture 4 slides](slides/lecture-04-memory-and-skills.pdf)
@@ -167,7 +185,12 @@
   - [HermesAgent: prompt_builder.py](https://github.com/NousResearch/hermes-agent/blob/main/agent/prompt_builder.py)
   - [HermesAgent: skills_tool.py](https://github.com/NousResearch/hermes-agent/blob/main/tools/skills_tool.py)
 
+</details>
+
 ### 3a · Tue, Sep 8 — Agent Capabilities 4: Planning, Task Decomposition, and Multi-Agent Coordination
+
+<details>
+<summary>展开 Slides / 录像 / 阅读材料</summary>
 
 - 模块: Introduction and Agent Capabilities
 - Slides: [Lecture 5 slides](slides/lecture-05-planning.pdf)
@@ -211,7 +234,12 @@
   - [Odysseys](https://odysseys-website.pages.dev/)
   - [Don't Sleep on Single-Agent Systems](https://www.openhands.dev/blog/dont-sleep-on-single-agent-systems)
 
+</details>
+
 ### 3b · Thu, Sep 10 — Domains 1: Coding Agents
+
+<details>
+<summary>展开 Slides / 录像 / 阅读材料</summary>
 
 - 模块: Domains
 - Slides: [Lecture 6 slides](slides/lecture-06-coding-agents.pdf)
@@ -261,7 +289,12 @@
   - [Hybrid-Gym](https://arxiv.org/abs/2602.16819)
   - [Code World Models](https://arxiv.org/abs/2405.15383)
 
+</details>
+
 ### 4a · Tue, Sep 15 — Computer Use Agents
+
+<details>
+<summary>展开 Slides / 录像 / 阅读材料</summary>
 
 - 模块: Domains
 - 讲师: [JY Koh](https://jykoh.com/)
@@ -284,7 +317,12 @@
   - [Gym-Anything](https://arxiv.org/abs/2604.06126)
   - [MolmoWeb](https://arxiv.org/abs/2604.08516)
 
+</details>
+
 ### 4b · Thu, Sep 17 — Training 1: Supervised Fine-Tuning (SFT)
+
+<details>
+<summary>展开 Slides / 录像 / 阅读材料</summary>
 
 - 模块: Training Methods
 - 讲师: [Yueqi Song](https://yueqis.github.io/)
@@ -311,7 +349,12 @@
   - [Axolotl: conversation datasets](https://docs.axolotl.ai/docs/dataset-formats/conversation.html)
   - [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory)
 
+</details>
+
 ### 5a · Tue, Sep 22 — Training 2: Reinforcement Learning Basics
+
+<details>
+<summary>展开 Slides / 录像 / 阅读材料</summary>
 
 - 模块: Training Methods
 - Slides: [Lecture 9 slides](slides/lecture-09-rl-basics.pdf)
@@ -325,7 +368,12 @@
   - [RL Fundamentals](https://cmu-l3.github.io/anlp-spring2026/static_files/anlp-s2026-16-rl.pdf)
   - [REINFORCE](https://doi.org/10.1007/BF00992696)
 
+</details>
+
 ### 5b · Thu, Sep 24 — Domains 3: Deep Research Agents
+
+<details>
+<summary>展开 Slides / 录像 / 阅读材料</summary>
 
 - 模块: Domains
 - 讲师: [Akari Asai](https://akariasai.github.io/)
@@ -357,7 +405,12 @@
   - [DeepSeekMath](https://arxiv.org/abs/2402.03300)
   - [Dense Passage Retrieval](https://aclanthology.org/2020.emnlp-main.550/)
 
+</details>
+
 ### 6a · Tue, Sep 29 — Training 3: Advanced RL Algorithms
+
+<details>
+<summary>展开 Slides / 录像 / 阅读材料</summary>
 
 - 模块: Training Methods
 - Slides: [Lecture 11 slides](slides/lecture-11-rl-advanced.pdf)
@@ -388,6 +441,8 @@
   - [Self-Distilled Reasoner (OPSD)](https://arxiv.org/abs/2601.18734)
   - [Policy Invariance Under Reward Transformations](https://people.eecs.berkeley.edu/~russell/papers/icml99-shaping.pdf)
 
+</details>
+
 ### 6b · Thu, Oct 1 — Training 4: RL Systems
 
 - 模块: Training Methods
@@ -396,6 +451,9 @@
 - **Assignment 2 due: Eval**
 
 ### 7a · Tue, Oct 6 — Safety 1: Agent Safety
+
+<details>
+<summary>展开 Slides / 录像 / 阅读材料</summary>
 
 - 模块: Agent Safety
 - Slides: [Lecture 13 slides](slides/lecture-13-agent-safety.pdf)
@@ -431,7 +489,12 @@
   - [OpenAgentSafety](https://arxiv.org/abs/2507.06134v2)
   - [Monitoring Monitorability](https://arxiv.org/abs/2512.18311)
 
+</details>
+
 ### 7b · Thu, Oct 8 — Frameworks 1: OpenHands
+
+<details>
+<summary>展开 Slides / 录像 / 阅读材料</summary>
 
 - 模块: Agent Frameworks
 - 讲师: [Graham Neubig](https://www.phontron.com/)
@@ -458,11 +521,16 @@
   - [OpenHands software-factory example](https://github.com/OpenHands/docs/pull/797)
   - [SkillRefiner: offline skill refinement](https://www.alphaxiv.org/abs/2610.skillrefiner-offline-skill-refinement)
 
+</details>
+
 ### 8a · Tue, Oct 13 — Fall Break - No class
 
 ### 8b · Thu, Oct 15 — Fall Break - No class
 
 ### 9a · Tue, Oct 20 — Frameworks 2: Orchestration and Monitoring
+
+<details>
+<summary>展开 Slides / 录像 / 阅读材料</summary>
 
 - 模块: Agent Frameworks
 - Slides: [Lecture 15 slides](slides/lecture-15-orchestration-and-monitoring.pdf)
@@ -496,6 +564,8 @@
   - [OpenHands automations: Fujitsu talk slides](https://github.com/neubig/slides/tree/main/slides/2026-09-25-fujitsu-openhands-en)
   - [Black Hat USA 2026: The OpenAI–Hugging Face incident](https://www.youtube.com/watch?v=87DyyMV0kCY)
   - [OpenAI: Hugging Face incident and the road ahead](https://openai.com/index/hugging-face-incident-and-the-road-ahead/)
+
+</details>
 
 ### 9b · Thu, Oct 22 — Safety 2: Observability and Monitoring
 
@@ -546,3 +616,4 @@
 ### 15a · Tue, Dec 1 — Final presentations (posters)
 
 ### 15b · Thu, Dec 3 — Final presentations (posters)
+
