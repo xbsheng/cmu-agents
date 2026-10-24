@@ -138,6 +138,7 @@
 
 - 模块: Introduction and Agent Capabilities
 - Slides: [Lecture 5 slides](slides/lecture-05-planning.pdf)
+- 录像: [Lecture 5 recording](https://www.youtube.com/watch?v=S8v-dR4s29M&list=PLSN0qpDfUvTM&index=5)
 - 阅读材料:
   - [Cursor: Introducing Plan Mode](https://cursor.com/blog/plan-mode)
   - [Least-to-Most Prompting](https://arxiv.org/abs/2205.10625)
@@ -181,6 +182,7 @@
 
 - 模块: Domains
 - Slides: [Lecture 6 slides](slides/lecture-06-coding-agents.pdf)
+- 录像: [Lecture 6 recording](https://www.youtube.com/watch?v=1BWeH1oOM7k&list=PLSN0qpDfUvTM&index=6)
 - **Assignment 1 due Mon, Sep 14: Harness**
 - 参考资料:
   - [OLMo](https://arxiv.org/abs/2402.00838)
@@ -225,56 +227,246 @@
   - [Hybrid-Gym](https://arxiv.org/abs/2602.16819)
   - [Code World Models](https://arxiv.org/abs/2405.15383)
 
-### 4a · Tue, Sep 15 — Domains 2: GUI Agents
+### 4a · Tue, Sep 15 — Computer Use Agents
 
 - 模块: Domains
 - 讲师: [JY Koh](https://jykoh.com/)
+- Slides: [Lecture 7 slides](slides/lecture-07-computer-use-agents.pdf)
+- 录像: [Lecture 7 recording](https://www.youtube.com/watch?v=jwGluLrrqjQ&list=PLSN0qpDfUvTM&index=7)
+- 阅读材料:
+  - [WebArena](https://arxiv.org/abs/2307.13854)
+  - [VisualWebArena](https://arxiv.org/abs/2401.13649)
+  - [OSWorld](https://arxiv.org/abs/2404.07972)
+  - [OpenCUA](https://arxiv.org/abs/2508.09123)
+  - [CUA-Gym](https://arxiv.org/abs/2605.25624)
+  - [Multi-Agent Computer Use (MACU)](https://arxiv.org/abs/2606.01533)
+- 参考资料:
+  - [MiniWoB](https://arxiv.org/abs/1704.04368)
+  - [WebShop](https://arxiv.org/abs/2207.01206)
+  - [ReAct](https://arxiv.org/abs/2210.03629)
+  - [Mind2Web](https://arxiv.org/abs/2306.06070)
+  - [WebVoyager](https://arxiv.org/abs/2401.13919)
+  - [ScreenSpot-Pro](https://arxiv.org/abs/2504.07981)
+  - [Gym-Anything](https://arxiv.org/abs/2604.06126)
+  - [MolmoWeb](https://arxiv.org/abs/2604.08516)
 
 ### 4b · Thu, Sep 17 — Training 1: Supervised Fine-Tuning (SFT)
 
 - 模块: Training Methods
 - 讲师: [Yueqi Song](https://yueqis.github.io/)
+- Slides: [Lecture 8 slides](slides/lecture-08-sft.pdf)
+- 录像: [Lecture 8 recording](https://www.youtube.com/watch?v=O3HSU0AoILc&list=PLSN0qpDfUvTM&index=8)
+- 参考资料:
+  - [Kimi K3](https://arxiv.org/abs/2607.24653)
+  - [DeepSeek-R1](https://arxiv.org/abs/2501.12948)
+  - [Nemotron 3 Ultra](https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3-Ultra-Technical-Report.pdf)
+  - [MAI-Thinking-1](https://microsoft.ai/pdf/mai-thinking-1.pdf)
+  - [K2 Horizon model card](https://huggingface.co/IFM/K2-Horizon-375B-A23B)
+  - [Kimi K2](https://arxiv.org/abs/2507.20534)
+  - [OpenThoughts-Agent](https://arxiv.org/abs/2606.24855)
+  - [SWE-Gym](https://arxiv.org/abs/2412.21139)
+  - [Agent Data Protocol](https://arxiv.org/abs/2510.24702)
+  - [BalanceSFT](https://arxiv.org/abs/2505.20192)
+  - [Instruction Modelling](https://arxiv.org/abs/2405.14394)
+  - [Weighted Instruction Tuning](https://arxiv.org/abs/2507.07817)
+  - [DAgger](https://proceedings.mlr.press/v15/ross11a.html)
+  - [Transformers: chat templates](https://huggingface.co/docs/transformers/en/chat_templating)
+  - [Transformers: apply_chat_template](https://huggingface.co/docs/transformers/en/main_classes/tokenizer)
+  - [TRL: SFTTrainer](https://huggingface.co/docs/trl/en/sft_trainer)
+  - [TRL: training chat templates](https://huggingface.co/docs/trl/en/chat_templates)
+  - [Axolotl: conversation datasets](https://docs.axolotl.ai/docs/dataset-formats/conversation.html)
+  - [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory)
 
 ### 5a · Tue, Sep 22 — Training 2: Reinforcement Learning Basics
 
 - 模块: Training Methods
+- Slides: [Lecture 9 slides](slides/lecture-09-rl-basics.pdf)
+- 录像: [Lecture 9 recording](https://www.youtube.com/watch?v=paAcPaaYZGM&list=PLSN0qpDfUvTM&index=9)
+- 阅读材料:
+  - [ReST](https://arxiv.org/abs/2308.08998)
+  - [ReST-EM](https://arxiv.org/abs/2312.06585)
+  - [DeepSeekMath](https://arxiv.org/abs/2402.03300)
+  - [DrGRPO](https://arxiv.org/abs/2503.20783)
+- 参考资料:
+  - [RL Fundamentals](https://cmu-l3.github.io/anlp-spring2026/static_files/anlp-s2026-16-rl.pdf)
+  - [REINFORCE](https://doi.org/10.1007/BF00992696)
 
 ### 5b · Thu, Sep 24 — Domains 3: Deep Research Agents
 
 - 模块: Domains
 - 讲师: [Akari Asai](https://akariasai.github.io/)
-- **Assignment 2 due: Eval**
+- Slides: [Lecture 10 slides](slides/lecture-10-deep-research-agents.pdf)
+- 阅读材料:
+  - [OpenScholar](https://www.nature.com/articles/s41586-025-10072-4)
+  - [BrowseComp](https://arxiv.org/abs/2504.12516)
+  - [DeepResearch Bench](https://arxiv.org/abs/2506.11763)
+  - [Tongyi DeepResearch](https://arxiv.org/abs/2510.24701)
+  - [DR Tulu](https://arxiv.org/abs/2511.19399)
+  - [AgentIR](https://arxiv.org/abs/2603.04384)
+- 参考资料:
+  - [Natural Questions example](https://ai.google.com/research/NaturalQuestions/databrowser)
+  - [Wikipedia source document](https://en.wikipedia.org/w/index.php?oldid=824425456)
+  - [BrowseComp-Plus](https://arxiv.org/abs/2508.06600)
+  - [FinSearchComp](https://arxiv.org/abs/2509.13160)
+  - [MedBrowseComp](https://arxiv.org/abs/2505.14963)
+  - [ScholarSearch](https://arxiv.org/abs/2506.13784)
+  - [AutoResearchBench](https://arxiv.org/abs/2604.25256)
+  - [A Critical Evaluation of Evaluations for Long-form Question Answering](https://aclanthology.org/2023.acl-long.181/)
+  - [ResearchQA](https://arxiv.org/abs/2509.00496)
+  - [DeepResearch Bench II](https://arxiv.org/abs/2601.08536)
+  - [CMU Archives: Herbert Simon](https://digitalcollections.library.cmu.edu/cmu-collection/herbert-simon)
+  - [1978 Nobel Prize in Economic Sciences](https://www.nobelprize.org/prizes/economic-sciences/1978/summary/)
+  - [WebSailor-V2](https://arxiv.org/abs/2509.13305)
+  - [WebDancer](https://arxiv.org/abs/2505.22648)
+  - [Scaling Agents via Continual Pre-training](https://arxiv.org/abs/2509.13310)
+  - [Search-R1](https://arxiv.org/abs/2503.09516)
+  - [DeepSeekMath](https://arxiv.org/abs/2402.03300)
+  - [Dense Passage Retrieval](https://aclanthology.org/2020.emnlp-main.550/)
 
 ### 6a · Tue, Sep 29 — Training 3: Advanced RL Algorithms
 
 - 模块: Training Methods
+- Slides: [Lecture 11 slides](slides/lecture-11-rl-advanced.pdf)
+- 参考资料:
+  - [MIXER](https://michaelauli.github.io/papers/iclr2016_mixer.pdf)
+  - [InstructGPT](https://arxiv.org/abs/2203.02155)
+  - [Generalized Advantage Estimation (GAE)](https://arxiv.org/abs/1506.02438)
+  - [Let’s Verify Step by Step](https://arxiv.org/abs/2305.20050)
+  - [AReaL](https://arxiv.org/abs/2505.24298)
+  - [CTPO](https://arxiv.org/abs/2605.07331)
+  - [Proximal Policy Optimization (PPO)](https://arxiv.org/abs/1707.06347)
+  - [DeepSeekMath (GRPO)](https://arxiv.org/abs/2402.03300)
+  - [MiniMax-M1 (CISPO)](https://arxiv.org/abs/2506.13585)
+  - [Group Sequence Policy Optimization (GSPO)](https://arxiv.org/abs/2507.18071)
+  - [DAPO](https://arxiv.org/abs/2503.14476)
+  - [Introducing SWE-bench Verified](https://openai.com/index/introducing-swe-bench-verified/)
+  - [Why we no longer evaluate SWE-bench Verified](https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/)
+  - [SABER (τ-bench audit)](https://arxiv.org/abs/2512.07850)
+  - [τ-bench task fixes](https://taubench.com/blog/tau3-task-fixes.html)
+  - [Reward Hacking in Reinforcement Learning](https://lilianweng.github.io/posts/2024-11-28-reward-hacking/)
+  - [MAI-Thinking-1](https://microsoft.ai/pdf/mai-thinking-1.pdf)
+  - [PostTrainBench](https://arxiv.org/abs/2603.08640)
+  - [Curriculum Learning](https://doi.org/10.1145/1553374.1553380)
+  - [OpenAI: calculator hacking and production evaluations](https://alignment.openai.com/prod-evals/)
+  - [Where the goblins came from](https://openai.com/index/where-the-goblins-came-from/)
+  - [Distilling the Knowledge in a Neural Network](https://arxiv.org/abs/1503.02531)
+  - [On-Policy Distillation of Language Models (GKD)](https://arxiv.org/abs/2306.13649)
+  - [Self-Distilled Reasoner (OPSD)](https://arxiv.org/abs/2601.18734)
+  - [Policy Invariance Under Reward Transformations](https://people.eecs.berkeley.edu/~russell/papers/icml99-shaping.pdf)
 
 ### 6b · Thu, Oct 1 — Training 4: RL Systems
 
 - 模块: Training Methods
 - 讲师: [Apurva Gandhi](https://apga.github.io/)
+- Slides: [Lecture 12 slides](slides/lecture-12-rl-systems.pdf)
+- **Assignment 2 due: Eval**
 
-### 7a · Tue, Oct 6 — Safety 1: Sandboxing and Credential Management
+### 7a · Tue, Oct 6 — Safety 1: Agent Safety
 
 - 模块: Agent Safety
+- Slides: [Lecture 13 slides](slides/lecture-13-agent-safety.pdf)
+- 参考资料:
+  - [OpenClaw incident report](https://x.com/summeryue0/status/2025774069124399363)
+  - [PocketOS database-deletion incident](https://thenewstack.io/ai-agents-credential-crisis)
+  - [Microsoft advisory: CVE-2025-32711](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-32711)
+  - [Cline supply-chain compromise postmortem](https://cline.bot/blog/post-mortem-unauthorized-cline-cli-npm)
+  - [Gambit Security: AI agents targeting online retailers](https://gambit.security/blog-posts/autonomous-ai-agents-online-retailers-25-a-company)
+  - [AgentDojo](https://arxiv.org/abs/2406.13352v3)
+  - [ToolEmu](https://arxiv.org/abs/2309.15817v2)
+  - [Introducing Docent](https://transluce.org/docent/blog/introducing-docent)
+  - [Gray Swan Arena: Agent Red-Teaming Challenge](https://app.grayswan.ai/arena/challenge/agent-red-teaming/leaderboard)
+  - [Security Challenges in AI Agent Deployment: Insights from a Large Scale Public Competition](https://arxiv.org/abs/2507.20526)
+  - [Jailbreaking Black Box Large Language Models in Twenty Queries (PAIR)](https://arxiv.org/abs/2310.08419)
+  - [Nemotron 3 Super technical report](https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3-Super-Technical-Report.pdf)
+  - [Docker Engine security](https://docs.docker.com/engine/security/)
+  - [Modal sandbox networking and security](https://modal.com/docs/guide/sandbox-networking)
+  - [OpenShell architecture (pinned revision)](https://github.com/NVIDIA/OpenShell/blob/ec49209da25be39840742df29b64ec694d159c2f/docs/about/architecture.mdx)
+  - [Modal sandboxes](https://modal.com/docs/guide/sandboxes)
+  - [E2B sandbox persistence](https://docs.e2b.dev/sandbox/persistence)
+  - [Apptainer quick start](https://apptainer.org/docs/user/main/quick_start.html)
+  - [QEMU system emulation](https://www.qemu.org/docs/master/system/introduction.html)
+  - [E2B sandbox lifecycle](https://docs.e2b.dev/sandbox)
+  - [GitHub personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
+  - [RFC 8693: OAuth 2.0 Token Exchange](https://www.rfc-editor.org/rfc/rfc8693.html)
+  - [GitHub App installation access tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-an-installation-access-token-for-a-github-app)
+  - [AI Control: Improving Safety Despite Intentional Subversion](https://arxiv.org/abs/2312.06942v5)
+  - [OpenTelemetry generative AI attributes](https://opentelemetry.io/docs/specs/semconv/registry/attributes/gen-ai/)
+  - [Docent](https://transluce.org/docent)
+  - [Monitoring Reasoning Models for Misbehavior and the Risks of Promoting Obfuscation](https://arxiv.org/abs/2503.11926)
+  - [AgentHarm](https://arxiv.org/abs/2410.09024)
+  - [OpenAgentSafety](https://arxiv.org/abs/2507.06134v2)
+  - [Monitoring Monitorability](https://arxiv.org/abs/2512.18311)
 
 ### 7b · Thu, Oct 8 — Frameworks 1: OpenHands
 
 - 模块: Agent Frameworks
+- 讲师: [Graham Neubig](https://www.phontron.com/)
+- Slides: [Lecture 14 slides](slides/lecture-14-openhands.pdf)
+- 参考资料:
+  - [OpenHands Software Agent SDK report](https://arxiv.org/abs/2511.03690v1)
+  - [OpenHands SDK source and examples](https://github.com/OpenHands/software-agent-sdk/tree/69e26889401fe69157fff536e6a69049e6644cb3)
+  - [OpenHands](https://github.com/OpenHands/OpenHands)
+  - [HumanEval](https://arxiv.org/abs/2107.03374)
+  - [SWE-bench](https://arxiv.org/abs/2310.06770v1)
+  - [Devin launch demo](https://www.youtube.com/watch?v=fjHtjT7GO1c)
+  - [OpenDevin: original callout](https://x.com/JustinLin610/status/1767769034186211557)
+  - [OpenDevin: early frontend demo](https://x.com/gneubig/status/1772735837479792761)
+  - [SWE-agent](https://arxiv.org/abs/2405.15793)
+  - [OpenDevin CodeAct 1.0](https://xwang.dev/blog/2024/opendevin-codeact-1.0-swebench/)
+  - [Don't Sleep on Single-agent Systems](https://hub.openhands.dev/blog/dont-sleep-on-single-agent-systems)
+  - [CodeR](https://arxiv.org/abs/2406.01304)
+  - [MetaGPT](https://arxiv.org/abs/2308.00352)
+  - [OpenHands-Versa](https://arxiv.org/abs/2506.03011v1)
+  - [Code with Me or for Me?](https://arxiv.org/abs/2507.08149v1)
+  - [VS Code with Copilot: agent quickstart](https://code.visualstudio.com/docs/agents/quickstart)
+  - [Claude Code terminal demo](https://github.com/anthropics/claude-code/blob/71cdddec623889d38af14b7a489670a03186f659/demo.gif)
+  - [GitHub Copilot coding agent](https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/)
+  - [OpenHands software-factory example](https://github.com/OpenHands/docs/pull/797)
+  - [SkillRefiner: offline skill refinement](https://www.alphaxiv.org/abs/2610.skillrefiner-offline-skill-refinement)
 
 ### 8a · Tue, Oct 13 — Fall Break - No class
 
 ### 8b · Thu, Oct 15 — Fall Break - No class
 
-### 9a · Tue, Oct 20 — Frameworks 2: LangGraph
+### 9a · Tue, Oct 20 — Frameworks 2: Orchestration and Monitoring
 
 - 模块: Agent Frameworks
+- Slides: [Lecture 15 slides](slides/lecture-15-orchestration-and-monitoring.pdf)
+- 阅读材料:
+  - [Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)
+  - [Thinking in LangGraph](https://docs.langchain.com/oss/python/langgraph/thinking-in-langgraph)
+  - [Diagnosing a performance regression on Terminal-Bench with Docent](https://transluce.org/docent/blog/terminal-bench)
+  - [Hodoscope: Unsupervised Monitoring for AI Misbehaviors](https://arxiv.org/abs/2604.11072)
+- 参考资料:
+  - [LangGraph: Workflows and agents](https://docs.langchain.com/oss/python/langgraph/workflows-agents)
+  - [LangGraph: Persistence](https://docs.langchain.com/oss/python/langgraph/persistence)
+  - [LangGraph: Interrupts](https://docs.langchain.com/oss/python/langgraph/interrupts)
+  - [LangGraph: Testing](https://docs.langchain.com/oss/python/langgraph/test)
+  - [LangChain: Testing](https://docs.langchain.com/oss/python/langchain/test)
+  - [LangSmith: Evaluation](https://docs.langchain.com/langsmith/evaluation)
+  - [Course support demo: password-reset trace](https://smith.langchain.com/public/5e17b93a-17af-4386-ada0-9bd033f98a74/r)
+  - [Course support demo: billing trace before approval](https://smith.langchain.com/public/aeddf201-687b-4389-acdb-137dd9683000/r)
+  - [Course support demo: billing trace after approval](https://smith.langchain.com/public/416d3c74-4b43-4883-b189-92a57431a819/r)
+  - [Docent: Pairwise comparisons and failure-mode synthesis](https://docent.transluce.org/dashboard/9bafeb94-3f6e-4d03-bd01-1ae8476e3f6e/analysis-plan/81230a32-88e0-42af-82c9-101660ab1d89)
+  - [Docent: No-timeout task comparison](https://docent.transluce.org/dashboard/9bafeb94-3f6e-4d03-bd01-1ae8476e3f6e/analysis-plan/772c0920-0b0f-4355-a009-825d1dd553b4)
+  - [Hodoscope announcement](https://hodoscope.dev/blog/announcement.html)
+  - [Embedding Atlas](https://apple.github.io/embedding-atlas/)
+  - [OpenHands SDK](https://docs.openhands.dev/sdk)
+  - [LangGraph overview](https://docs.langchain.com/oss/python/langgraph/overview)
+  - [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/)
+  - [AG2 overview](https://docs.ag2.ai/latest/docs/user-guide/basic-concepts/overview/)
+  - [DSPy](https://dspy.ai/)
+  - [Don’t Sleep on Single-Agent Systems](https://hub.openhands.dev/blog/dont-sleep-on-single-agent-systems)
+  - [Agent Skills specification](https://agentskills.io/specification)
+  - [Multi-Agent Computer Use (MACU)](https://arxiv.org/abs/2606.01533)
+  - [OpenHands automations: Fujitsu talk slides](https://github.com/neubig/slides/tree/main/slides/2026-09-25-fujitsu-openhands-en)
+  - [Black Hat USA 2026: The OpenAI–Hugging Face incident](https://www.youtube.com/watch?v=87DyyMV0kCY)
+  - [OpenAI: Hugging Face incident and the road ahead](https://openai.com/index/hugging-face-incident-and-the-road-ahead/)
 
 ### 9b · Thu, Oct 22 — Safety 2: Observability and Monitoring
 
 - 模块: Frameworks and Safety
 - 讲师: [Eric Wallace](https://www.ericswallace.com/)
-- **Assignment 3 due: Training**
 
 ### 10a · Tue, Oct 27 — Agents and the Future of Work
 
@@ -285,6 +477,7 @@
 
 - 模块: Interaction and Projects
 - 讲师: [Saujas Vaduguru](https://saujasv.github.io/)
+- **Assignment 3 due: Training**
 
 ### 11a · Tue, Nov 3 — Project hours
 
