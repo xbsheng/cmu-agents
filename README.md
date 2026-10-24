@@ -1,22 +1,10 @@
 # 卡内基梅隆大学 11-768 · AI Agents (Fall 2026)
 
-[![在线讲义](https://img.shields.io/badge/在线讲义-xbsheng.github.io%2Fcmu--agents-8b0000)](https://xbsheng.github.io/cmu-agents/)
-[![Deploy docs](https://github.com/xbsheng/cmu-agents/actions/workflows/deploy.yml/badge.svg)](https://github.com/xbsheng/cmu-agents/actions/workflows/deploy.yml)
-
 来源: [cmu-agents.com](https://www.cmu-agents.com) · Slides 已下载至 `slides/`
 
 在线阅读：<https://xbsheng.github.io/cmu-agents/>
 
 ## 课程笔记
-
-笔记使用 [VitePress](https://vitepress.dev/) 构建，源码位于 `docs/`，图片位于 `docs/public/images/`。本地预览：
-
-```bash
-npm install
-npm run docs:dev
-```
-
-站点配置了 GitHub Pages 项目路径 `base: '/cmu-agents/'`，本地开发地址为 <http://localhost:5173/cmu-agents/>。
 
 已整理 15 讲详细讲义（按模块）：
 
@@ -46,21 +34,6 @@ npm run docs:dev
 - [7a · Agent Safety](docs/notes/lecture-13-agent-safety.md)
 - [7b · OpenHands](docs/notes/lecture-14-openhands.md)
 - [9a · Orchestration and Monitoring](docs/notes/lecture-15-orchestration-and-monitoring.md)（暂无录像，基于 slides）
-
-## 部署
-
-推送到 `main` 后，[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) 会自动执行 `npm ci && npm run docs:build`，并通过 GitHub Pages Actions 发布 `docs/.vitepress/dist`。
-
-- 部署地址：<https://xbsheng.github.io/cmu-agents/>
-- 手动触发：在 Actions 页面运行 “Deploy docs to GitHub Pages”，或执行 `gh workflow run deploy.yml`
-- 自定义域名：在仓库变量中设置 `DOCS_BASE=/` 与 `DOCS_URL=https://your-domain/`，在 Pages 设置中配置域名后重新构建
-
-本地验证生产构建：
-
-```bash
-DOCS_BASE=/cmu-agents/ npm run docs:build
-npm run docs:preview
-```
 
 ## 课程安排
 
