@@ -2,6 +2,19 @@
 
 来源: [cmu-agents.com](https://www.cmu-agents.com) · Slides 已下载至 `slides/`
 
+## 课程笔记
+
+笔记使用 [VitePress](https://vitepress.dev/) 构建，源码位于 `docs/`，图片位于 `docs/public/images/`。本地预览：
+
+```bash
+npm install
+npm run docs:dev
+```
+
+已整理：
+
+- [3b · Domains 1: Coding Agents 详细讲义](docs/notes/lecture-06-coding-agents.md)
+
 ## 课程安排
 
 ### 1a · Tue, Aug 25 — Course Overview: What Is an Agent?
@@ -183,6 +196,7 @@
 - 模块: Domains
 - Slides: [Lecture 6 slides](slides/lecture-06-coding-agents.pdf)
 - 录像: [Lecture 6 recording](https://www.youtube.com/watch?v=1BWeH1oOM7k&list=PLSN0qpDfUvTM&index=6)
+- 笔记: [Coding Agents 详细讲义](docs/notes/lecture-06-coding-agents.md)
 - **Assignment 1 due Mon, Sep 14: Harness**
 - 参考资料:
   - [OLMo](https://arxiv.org/abs/2402.00838)
