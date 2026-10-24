@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress'
 
-const siteUrl = 'https://xbsheng.github.io/cmu-agents/'
+const siteUrl = process.env.DOCS_URL || 'https://xbsheng.github.io/cmu-agents/'
 const base = process.env.DOCS_BASE || '/cmu-agents/'
 
 export default defineConfig({

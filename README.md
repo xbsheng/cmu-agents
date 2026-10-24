@@ -53,7 +53,7 @@ npm run docs:dev
 
 - 部署地址：<https://xbsheng.github.io/cmu-agents/>
 - 手动触发：在 Actions 页面运行 “Deploy docs to GitHub Pages”，或执行 `gh workflow run deploy.yml`
-- 自定义域名：在仓库变量中设置 `DOCS_BASE=/`，并在 Pages 设置中配置域名后重新构建
+- 自定义域名：在仓库变量中设置 `DOCS_BASE=/` 与 `DOCS_URL=https://your-domain/`，在 Pages 设置中配置域名后重新构建
 
 本地验证生产构建：
 
