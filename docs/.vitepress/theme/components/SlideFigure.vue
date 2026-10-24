@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { withBase } from 'vitepress'
 
 const props = defineProps<{
   lecture: string | number
@@ -11,7 +12,7 @@ const props = defineProps<{
 const src = computed(() => {
   const lec = String(props.lecture).padStart(2, '0')
   const n = String(props.page).padStart(2, '0')
-  return `/images/lecture-${lec}/p${n}.png`
+  return withBase(`/images/lecture-${lec}/p${n}.png`)
 })
 const altText = computed(() => props.alt || props.caption || `Slide ${props.page}`)
 </script>

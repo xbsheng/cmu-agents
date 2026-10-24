@@ -2,7 +2,7 @@
 
 本目录按课程讲次整理中文详细讲义。每份笔记基于公开的 lecture slides 与课程录像，保留英文术语，并标注对应的时间戳和页码，方便回看原始材料。
 
-## Introduction & Agent Capabilities
+## 导论与 Agent 能力
 
 | 讲次 | 主题 | 录像 | 笔记 |
 |---|---|---|---|
@@ -12,7 +12,7 @@
 | 2b | Skills and Memory | 有 | [阅读](./lecture-04-memory-and-skills) |
 | 3a | Planning, Task Decomposition, and Multi-Agent Coordination | 有 | [阅读](./lecture-05-planning) |
 
-## Domains
+## 应用领域
 
 | 讲次 | 主题 | 录像 | 笔记 |
 |---|---|---|---|
@@ -20,7 +20,7 @@
 | 4a | Computer Use Agents | 有 | [阅读](./lecture-07-computer-use-agents) |
 | 5b | Deep Research Agents | 有 | [阅读](./lecture-10-deep-research-agents) |
 
-## Training Methods
+## 训练方法
 
 | 讲次 | 主题 | 录像 | 笔记 |
 |---|---|---|---|
@@ -29,7 +29,7 @@
 | 6a | Advanced RL Algorithms | 有 | [阅读](./lecture-11-rl-advanced) |
 | 6b | RL Systems | 有 | [阅读](./lecture-12-rl-systems) |
 
-## Safety & Frameworks
+## 安全与框架
 
 | 讲次 | 主题 | 录像 | 笔记 |
 |---|---|---|---|

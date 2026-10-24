@@ -1,17 +1,31 @@
 import { defineConfig } from 'vitepress'
 
+const siteUrl = 'https://xbsheng.github.io/cmu-agents/'
+const base = process.env.DOCS_BASE || '/cmu-agents/'
+
 export default defineConfig({
   lang: 'zh-CN',
   title: 'CMU 11-768 · AI Agents',
   description: '卡内基梅隆大学 11-768 AI Agents 课程中文讲义笔记',
+  // Project site on GitHub Pages: https://xbsheng.github.io/cmu-agents/
+  // Override with DOCS_BASE=/ when deploying to a custom domain.
+  base,
   cleanUrls: true,
   lastUpdated: true,
+  sitemap: {
+    hostname: siteUrl
+  },
   head: [
-    ['link', { rel: 'icon', type: 'image/png', sizes: '64x64', href: '/favicon.png' }],
-    ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }],
+    ['link', { rel: 'icon', type: 'image/png', sizes: '64x64', href: `${base}favicon.png` }],
+    ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: `${base}apple-touch-icon.png` }],
     ['meta', { name: 'theme-color', content: '#8b0000' }],
     ['meta', { name: 'theme-color', content: '#121212', media: '(prefers-color-scheme: dark)' }],
-    ['meta', { name: 'format-detection', content: 'telephone=no' }]
+    ['meta', { name: 'format-detection', content: 'telephone=no' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:site_name', content: 'CMU 11-768 · AI Agents' }],
+    ['meta', { property: 'og:title', content: 'CMU 11-768 · AI Agents 中文讲义' }],
+    ['meta', { property: 'og:description', content: '卡内基梅隆大学 11-768 AI Agents 课程中文详细讲义，共 15 讲。' }],
+    ['meta', { property: 'og:image', content: `${siteUrl}logo.png` }]
   ],
   themeConfig: {
     nav: [
@@ -21,38 +35,38 @@ export default defineConfig({
     sidebar: {
       '/notes/': [
         {
-          text: 'Introduction & Agent Capabilities',
+          text: '导论与 Agent 能力',
           items: [
-            { text: '1a · Course Overview', link: '/notes/lecture-01-agents' },
-            { text: '1b · Tool Use', link: '/notes/lecture-02-tool-use' },
-            { text: '2a · Long-Context Agents', link: '/notes/lecture-03-long-context' },
-            { text: '2b · Skills & Memory', link: '/notes/lecture-04-memory-and-skills' },
-            { text: '3a · Planning & Multi-Agent', link: '/notes/lecture-05-planning' }
+            { text: '1a · 课程概览', link: '/notes/lecture-01-agents' },
+            { text: '1b · 工具使用', link: '/notes/lecture-02-tool-use' },
+            { text: '2a · 长上下文 Agent', link: '/notes/lecture-03-long-context' },
+            { text: '2b · 技能与记忆', link: '/notes/lecture-04-memory-and-skills' },
+            { text: '3a · 规划与多 Agent', link: '/notes/lecture-05-planning' }
           ]
         },
         {
-          text: 'Domains',
+          text: '应用领域',
           items: [
-            { text: '3b · Coding Agents', link: '/notes/lecture-06-coding-agents' },
-            { text: '4a · Computer Use Agents', link: '/notes/lecture-07-computer-use-agents' },
-            { text: '5b · Deep Research Agents', link: '/notes/lecture-10-deep-research-agents' }
+            { text: '3b · 编程 Agent', link: '/notes/lecture-06-coding-agents' },
+            { text: '4a · 计算机使用 Agent', link: '/notes/lecture-07-computer-use-agents' },
+            { text: '5b · 深度研究 Agent', link: '/notes/lecture-10-deep-research-agents' }
           ]
         },
         {
-          text: 'Training Methods',
+          text: '训练方法',
           items: [
             { text: '4b · SFT', link: '/notes/lecture-08-sft' },
-            { text: '5a · RL Basics', link: '/notes/lecture-09-rl-basics' },
-            { text: '6a · Advanced RL', link: '/notes/lecture-11-rl-advanced' },
-            { text: '6b · RL Systems', link: '/notes/lecture-12-rl-systems' }
+            { text: '5a · RL 基础', link: '/notes/lecture-09-rl-basics' },
+            { text: '6a · 高级 RL', link: '/notes/lecture-11-rl-advanced' },
+            { text: '6b · RL 系统', link: '/notes/lecture-12-rl-systems' }
           ]
         },
         {
-          text: 'Safety & Frameworks',
+          text: '安全与框架',
           items: [
-            { text: '7a · Agent Safety', link: '/notes/lecture-13-agent-safety' },
+            { text: '7a · Agent 安全', link: '/notes/lecture-13-agent-safety' },
             { text: '7b · OpenHands', link: '/notes/lecture-14-openhands' },
-            { text: '9a · Orchestration & Monitoring', link: '/notes/lecture-15-orchestration-and-monitoring' }
+            { text: '9a · 编排与监控', link: '/notes/lecture-15-orchestration-and-monitoring' }
           ]
         }
       ]
