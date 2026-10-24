@@ -7,8 +7,10 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: true,
   head: [
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
-    ['meta', { name: 'theme-color', content: '#b31b1b' }],
+    ['link', { rel: 'icon', type: 'image/png', sizes: '64x64', href: '/favicon.png' }],
+    ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }],
+    ['meta', { name: 'theme-color', content: '#8b0000' }],
+    ['meta', { name: 'theme-color', content: '#121212', media: '(prefers-color-scheme: dark)' }],
     ['meta', { name: 'format-detection', content: 'telephone=no' }]
   ],
   themeConfig: {
@@ -19,9 +21,38 @@ export default defineConfig({
     sidebar: {
       '/notes/': [
         {
-          text: 'Domains · 应用领域',
+          text: 'Introduction & Agent Capabilities',
           items: [
-            { text: '3b · Coding Agents', link: '/notes/lecture-06-coding-agents' }
+            { text: '1a · Course Overview', link: '/notes/lecture-01-agents' },
+            { text: '1b · Tool Use', link: '/notes/lecture-02-tool-use' },
+            { text: '2a · Long-Context Agents', link: '/notes/lecture-03-long-context' },
+            { text: '2b · Skills & Memory', link: '/notes/lecture-04-memory-and-skills' },
+            { text: '3a · Planning & Multi-Agent', link: '/notes/lecture-05-planning' }
+          ]
+        },
+        {
+          text: 'Domains',
+          items: [
+            { text: '3b · Coding Agents', link: '/notes/lecture-06-coding-agents' },
+            { text: '4a · Computer Use Agents', link: '/notes/lecture-07-computer-use-agents' },
+            { text: '5b · Deep Research Agents', link: '/notes/lecture-10-deep-research-agents' }
+          ]
+        },
+        {
+          text: 'Training Methods',
+          items: [
+            { text: '4b · SFT', link: '/notes/lecture-08-sft' },
+            { text: '5a · RL Basics', link: '/notes/lecture-09-rl-basics' },
+            { text: '6a · Advanced RL', link: '/notes/lecture-11-rl-advanced' },
+            { text: '6b · RL Systems', link: '/notes/lecture-12-rl-systems' }
+          ]
+        },
+        {
+          text: 'Safety & Frameworks',
+          items: [
+            { text: '7a · Agent Safety', link: '/notes/lecture-13-agent-safety' },
+            { text: '7b · OpenHands', link: '/notes/lecture-14-openhands' },
+            { text: '9a · Orchestration & Monitoring', link: '/notes/lecture-15-orchestration-and-monitoring' }
           ]
         }
       ]

@@ -2,14 +2,16 @@
 import { computed } from 'vue'
 
 const props = defineProps<{
+  lecture: string | number
   page: string | number
   caption?: string
   alt?: string
 }>()
 
 const src = computed(() => {
+  const lec = String(props.lecture).padStart(2, '0')
   const n = String(props.page).padStart(2, '0')
-  return `/images/lecture-06/p${n}.png`
+  return `/images/lecture-${lec}/p${n}.png`
 })
 const altText = computed(() => props.alt || props.caption || `Slide ${props.page}`)
 </script>

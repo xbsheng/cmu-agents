@@ -12,7 +12,7 @@ outline: [2, 3]
 <p>前置：Tool Use（第 2 讲）、Long Context（第 3 讲）、Memory &amp; Skills（第 4 讲）、Planning（第 5 讲）</p>
 </div>
 
-<SlideFigure page="1" caption="Slide 1 · 本讲标题页：从 code completion 到 software engineering"></SlideFigure>
+<SlideFigure lecture="06" page="1" caption="Slide 1 · 本讲标题页：从 code completion 到 software engineering"></SlideFigure>
 
 ## 本讲速览
 
@@ -32,7 +32,7 @@ Graham 先澄清了标题：本讲不只讲“会写代码的 agent”，而是�
 2. **修改仓库**：跨多个文件定位并修改代码；
 3. **参与开发**：覆盖需求、实现、测试、评审、部署、维护的完整生命周期。
 
-<SlideFigure page="2" caption="Slide 2 · Coding agent 的三个层次：单次补全、仓库级修改、完整软件生命周期"></SlideFigure>
+<SlideFigure lecture="06" page="2" caption="Slide 2 · Coding agent 的三个层次：单次补全、仓库级修改、完整软件生命周期"></SlideFigure>
 
 所有 agent 仍然由三个 ingredients 组成（Slide 3）：**Prompt、Tools、LLM**。前两讲已经讨论了 prompt、记忆和长上下文，本讲把重点放在 **LLM 的代码能力**与 **coding toolset** 上。
 
@@ -46,7 +46,7 @@ Graham 先澄清了标题：本讲不只讲“会写代码的 agent”，而是�
 
 对应的训练流水线是 **pre-training → mid-training → RL post-training**（Slide 6）。本讲会依次展开，但把 SFT/RL 的通用机制留给后面的 Training 模块，只讲 coding 特有的部分。
 
-<SlideFigure page="6" caption="Slide 6 · 代码模型的三个训练阶段：预训练、中训练、RL 后训练"></SlideFigure>
+<SlideFigure lecture="06" page="6" caption="Slide 6 · 代码模型的三个训练阶段：预训练、中训练、RL 后训练"></SlideFigure>
 
 ::: tip 本讲的主线
 **单步模型的能力边界**决定了 agent 的上限；**agentic loop 与工具设计**决定了这些能力能否被稳定调用；**可执行评测**则决定了我们能否可靠地训练和比较 agent。
@@ -58,7 +58,7 @@ Graham 先澄清了标题：本讲不只讲“会写代码的 agent”，而是�
 
 代码模型不能只在代码上训练。预训练语料通常是 **web text、technical prose、mathematics、source code、documentation** 的混合（Slide 7）。原因很直接：模型既要会写代码，也要能读懂 issue、文档、错误信息和自然语言需求。
 
-<SlideFigure page="7" caption="Slide 7 · 预训练语料是 web text、技术文本、数学、代码和文档的混合"></SlideFigure>
+<SlideFigure lecture="06" page="7" caption="Slide 7 · 预训练语料是 web text、技术文本、数学、代码和文档的混合"></SlideFigure>
 
 预训练目标仍然是 next-token prediction：
 
@@ -89,7 +89,7 @@ $$
 
 代码分词的目标不是“把字符压得越短越好”，而是**在压缩率与可编辑性之间取平衡**（Slide 9）。
 
-<SlideFigure page="9" caption="Slide 9 · 代码分词要保留 whitespace，并把常见空白 run 合并成 token"></SlideFigure>
+<SlideFigure lecture="06" page="9" caption="Slide 9 · 代码分词要保留 whitespace，并把常见空白 run 合并成 token"></SlideFigure>
 
 几个关键点：
 
@@ -106,7 +106,7 @@ $$
 
 StarCoderBase 的规模是 **15.5B 参数、1T tokens、80+ 种语言**，数据包含 source code、issues、commits、notebooks（Slide 10）。
 
-<SlideFigure page="10" caption="Slide 10 · StarCoderBase：15.5B 参数、1T tokens、80+ 语言；多数语言的 pass@1 随训练 token 增加而提升"></SlideFigure>
+<SlideFigure lecture="06" page="10" caption="Slide 10 · StarCoderBase：15.5B 参数、1T tokens、80+ 语言；多数语言的 pass@1 随训练 token 增加而提升"></SlideFigure>
 
 曲线说明两点：
 
@@ -130,7 +130,7 @@ Code Llama 的做法是：从 Llama 2 出发，额外训练 **500B tokens**，�
 
 长上下文也是中训练的一部分（Slide 13）：
 
-<SlideFigure page="13" caption="Slide 13 · 中训练要构造跨文件的 coherent sequences，并把上下文从 8K 扩展到 32K/128K"></SlideFigure>
+<SlideFigure lecture="06" page="13" caption="Slide 13 · 中训练要构造跨文件的 coherent sequences，并把上下文从 8K 扩展到 32K/128K"></SlideFigure>
 
 - **构造 coherent sequences**：按目录、import 关系、dependency graph 把相关文件拼在一起，而不是随机拼接所有文件；
 - **位置与长度**：Qwen2.5-Coder 先训练 8K，再扩到 32K；YaRN 可继续扩到 128K；
@@ -144,7 +144,7 @@ Code Llama 的做法是：从 Llama 2 出发，额外训练 **500B tokens**，�
 
 普通 causal LM 只能看左侧前缀。但代码编辑经常需要**同时看左右两侧**：给函数签名和函数体，推断返回类型；给变量使用处，推断声明；在文件中间插入代码（Slide 14）。
 
-<SlideFigure page="14" caption="Slide 14 · Infilling 的动机：只看左侧无法确定返回类型，右侧 `return x > 0` 提供了 `bool` 的证据"></SlideFigure>
+<SlideFigure lecture="06" page="14" caption="Slide 14 · Infilling 的动机：只看左侧无法确定返回类型，右侧 `return x > 0` 提供了 `bool` 的证据"></SlideFigure>
 
 InCoder 的做法很巧妙：把 infilling 改写成 autoregressive 任务（Slide 15）。
 
@@ -154,7 +154,7 @@ InCoder 的做法很巧妙：把 infilling 改写成 autoregressive 任务（Sli
 推理：   prefix [M0] suffix [M0] → 生成 span
 ```
 
-<SlideFigure page="15" caption="Slide 15 · 用 sentinel token 把 infilling 转成从左到右生成；多个 hole 用不同 sentinel 标记"></SlideFigure>
+<SlideFigure lecture="06" page="15" caption="Slide 15 · 用 sentinel token 把 infilling 转成从左到右生成；多个 hole 用不同 sentinel 标记"></SlideFigure>
 
 要点：
 
@@ -203,7 +203,7 @@ return x >= 0
 return not (x <= 0)
 ```
 
-<SlideFigure page="20" caption="Slide 20 · BLEU/精确匹配的盲区：一个字符的差异可能改变行为，完全不同的表达式可能等价"></SlideFigure>
+<SlideFigure lecture="06" page="20" caption="Slide 20 · BLEU/精确匹配的盲区：一个字符的差异可能改变行为，完全不同的表达式可能等价"></SlideFigure>
 
 这类指标适合快速回归或风格比较，但不能作为“代码是否正确”的主要依据。
 
@@ -215,7 +215,7 @@ $$
 \text{CodeBLEU} = \alpha \cdot \text{N-gram} + \beta \cdot \text{Weighted N-gram} + \gamma \cdot \text{AST Match} + \delta \cdot \text{Data-flow Match}
 $$
 
-<SlideFigure page="21" caption="Slide 21 · CodeBLEU 同时比较 n-gram、AST 结构和 semantic data-flow"></SlideFigure>
+<SlideFigure lecture="06" page="21" caption="Slide 21 · CodeBLEU 同时比较 n-gram、AST 结构和 semantic data-flow"></SlideFigure>
 
 - **AST Match**：把代码解析成抽象语法树，比较树结构；
 - **Data-flow Match**：比较变量/值在程序中的来源与流向；
@@ -224,7 +224,7 @@ $$
 
 **CodeBERTScore** 则用预训练代码模型编码 prompt 和候选代码，再比较 contextual token vectors 的最佳匹配，计算 precision/recall/F-score（Slide 22）。
 
-<SlideFigure page="22" caption="Slide 22 · CodeBERTScore：用上下文 token 向量的最佳匹配衡量代码相似度"></SlideFigure>
+<SlideFigure lecture="06" page="22" caption="Slide 22 · CodeBERTScore：用上下文 token 向量的最佳匹配衡量代码相似度"></SlideFigure>
 
 它比 BLEU 更能捕捉语义相似性，但仍然是“与参考解相似”的代理指标，不能替代执行。
 
@@ -285,7 +285,7 @@ $$
 - **Latency / resource use**：与参考编辑比较，用 DiffBLEU 等指标；
 - **Maintainability / security**：静态检查（如 CodeQL）+ 编辑匹配。
 
-<SlideFigure page="27" caption="Slide 27 · 非功能需求评测：运行时、延迟/资源、可维护性与安全"></SlideFigure>
+<SlideFigure lecture="06" page="27" caption="Slide 27 · 非功能需求评测：运行时、延迟/资源、可维护性与安全"></SlideFigure>
 
 RL 训练则把测试结果直接变成 reward（Slide 28）：
 
@@ -295,7 +295,7 @@ RL 训练则把测试结果直接变成 reward（Slide 28）：
 4. 更新模型，让高 reward 的 response 更可能；
 5. 用更新后的模型继续采样。
 
-<SlideFigure page="28" caption="Slide 28 · 用执行结果做 RL：采样 → 跑测试 → reward → 更新 → 再采样"></SlideFigure>
+<SlideFigure lecture="06" page="28" caption="Slide 28 · 用执行结果做 RL：采样 → 跑测试 → reward → 更新 → 再采样"></SlideFigure>
 
 一个很好的例子是求和 `1 + … + n`（Slide 29）：
 
@@ -305,13 +305,13 @@ RL 训练则把测试结果直接变成 reward（Slide 28）：
 
 这说明 reasoning 不是装饰：它要能把“规格 → 行为 → 复杂度”串起来，并通过测试验证。
 
-<SlideFigure page="30" caption="Slide 30 · DeepCoder：RL 阶段 16K→32K response token，评测时扩到 64K；推理长度与准确率同步提升"></SlideFigure>
+<SlideFigure lecture="06" page="30" caption="Slide 30 · DeepCoder：RL 阶段 16K→32K response token，评测时扩到 64K；推理长度与准确率同步提升"></SlideFigure>
 
 ## 4. Agentic coding：localize–edit–verify
 
 单步模型处理的是自包含 prompt；真实仓库里的 issue 需要先找位置、再改、再验证（Slide 32）。
 
-<SlideFigure page="32" caption="Slide 32 · 单步 coding 与 agentic coding 的差别：后者要在现有仓库中搜索、编辑、跑测试并迭代"></SlideFigure>
+<SlideFigure lecture="06" page="32" caption="Slide 32 · 单步 coding 与 agentic coding 的差别：后者要在现有仓库中搜索、编辑、跑测试并迭代"></SlideFigure>
 
 核心循环（Slide 33）：
 
@@ -320,7 +320,7 @@ RL 训练则把测试结果直接变成 reward（Slide 28）：
 3. **Verify**：跑测试，检查修复与回归；
 4. 失败 → 修正假设，回到 1/2，而不是重复同一个动作。
 
-<SlideFigure page="33" caption="Slide 33 · Localize–Edit–Verify：仓库级 coding agent 的基本循环"></SlideFigure>
+<SlideFigure lecture="06" page="33" caption="Slide 33 · Localize–Edit–Verify：仓库级 coding agent 的基本循环"></SlideFigure>
 
 课堂上的 running example 很典型：`retries` 的默认值逻辑把 `0` 也当成 falsy，于是传 0 时被替换成 3。
 
@@ -365,7 +365,7 @@ Agentless 不做自由形式的工具调用，而是把仓库级修复拆成固�
 3. 定位具体行；
 4. 用单步模型生成 patch。
 
-<SlideFigure page="37" caption="Slide 37 · Agentless：把 localize 拆成文件/类/行三级，再用单步模型生成 patch"></SlideFigure>
+<SlideFigure lecture="06" page="37" caption="Slide 37 · Agentless：把 localize 拆成文件/类/行三级，再用单步模型生成 patch"></SlideFigure>
 
 讲师给了一个有意思的历史判断：在模型还不擅长 tool calling、但被大量训练做单步代码修复的时期，**固定 workflow 有时反而比 agent 更强**。随着模型 tool-use 能力提升，现在主流又回到了 agentic loop。这提醒我们：架构选择要和模型能力匹配，而不是盲目追求“更 agent”。
 
@@ -375,7 +375,7 @@ Agentless 不做自由形式的工具调用，而是把仓库级修复拆成固�
 
 mini-SWE-agent 的极简设计是：**只给模型一个 bash 接口**（Slide 39）。
 
-<SlideFigure page="39" caption="Slide 39 · Shell-only 工具集：读/搜、编辑、执行检查都通过 bash 完成"></SlideFigure>
+<SlideFigure lecture="06" page="39" caption="Slide 39 · Shell-only 工具集：读/搜、编辑、执行检查都通过 bash 完成"></SlideFigure>
 
 | 操作 | 常用命令 |
 |---|---|
@@ -441,7 +441,7 @@ Codex 的 file-operation patch 则用文件操作 + 上下文，不依赖行号�
 
 格式的影响有多大？Aider 的 refactoring benchmark（89 个 Python 任务）上，GPT-4 Turbo 的 search/replace 成功率是 **20%**，简化 unified diff 是 **61%**（Slide 43）。
 
-<SlideFigure page="43" caption="Slide 43 · 同一模型、同一任务，仅改变 diff 格式，成功率从 20% 提升到 61%"></SlideFigure>
+<SlideFigure lecture="06" page="43" caption="Slide 43 · 同一模型、同一任务，仅改变 diff 格式，成功率从 20% 提升到 61%"></SlideFigure>
 
 这也解释了 multi-harness training 的必要性：如果模型只见过一种 edit format，换一个 harness 就可能显著掉分。讲师提到 Gemini 曾因使用自家 edit format，在很多 harness 上表现不佳，后来才逐渐适配。
 
@@ -472,7 +472,7 @@ SWE-bench 的构造方式（Slide 47）：
 4. agent 生成 patch，应用后跑测试；
 5. 相关测试全部通过 → 得分 1，否则 0。
 
-<SlideFigure page="47" caption="Slide 47 · SWE-bench：issue + 修复前仓库 + 相关测试；patch 通过 fail-to-pass 与 pass-to-pass 才算解决"></SlideFigure>
+<SlideFigure lecture="06" page="47" caption="Slide 47 · SWE-bench：issue + 修复前仓库 + 相关测试；patch 通过 fail-to-pass 与 pass-to-pass 才算解决"></SlideFigure>
 
 测试分两类：
 
@@ -495,7 +495,7 @@ SWE-bench 的工程难点在于环境：Django、NumPy 这类仓库跑全量测�
 
 多步修复的 RL 有一个核心难题（Slide 49）：**terminal reward 只知道最后有没有修好，无法告诉你是哪一步决策错了**。
 
-<SlideFigure page="49" caption="Slide 49 · 多步代码修复的 RL：terminal reward 难以做 credit assignment"></SlideFigure>
+<SlideFigure lecture="06" page="49" caption="Slide 49 · 多步代码修复的 RL：terminal reward 难以做 credit assignment"></SlideFigure>
 
 $$
 \max_\theta \; \mathbb{E}_{\tau \sim \pi_\theta}[R(\tau)]
@@ -514,7 +514,7 @@ SWE-Gym 的思路是构造大量可执行环境，并在这些环境上做 RL（
 3. 保留“变异后测试失败”的样本；
 4. 把“修复这个失败”作为训练任务。
 
-<SlideFigure page="51" caption="Slide 51 · SWE-smith：变异代码、保留测试，自动生成大量可执行的修复任务"></SlideFigure>
+<SlideFigure lecture="06" page="51" caption="Slide 51 · SWE-smith：变异代码、保留测试，自动生成大量可执行的修复任务"></SlideFigure>
 
 例子（Slide 52）：
 
@@ -552,7 +552,7 @@ return 3 if not value else value
 
 Multi-harness training 则解决“模型只适配一个 agent 框架”的问题（Slide 54）。这里的 harness 指 **prompts + tools + agent loop + context management**：
 
-<SlideFigure page="54" caption="Slide 54 · Multi-harness training：同一组权重在 OpenHands、OpenCode、Codex 等不同 harness 上训练"></SlideFigure>
+<SlideFigure lecture="06" page="54" caption="Slide 54 · Multi-harness training：同一组权重在 OpenHands、OpenCode、Codex 等不同 harness 上训练"></SlideFigure>
 
 - 同一模型权重，在不同 harness 下表现可能差异很大；
 - 训练时混合多个 harness，让模型学会不同的 edit format、工具约定和上下文管理方式；
@@ -563,14 +563,14 @@ Multi-harness training 则解决“模型只适配一个 agent 框架”的问�
 
 前端任务的循环仍然是 localize → edit → verify，但 verify 发生在浏览器里（Slide 56）：
 
-<SlideFigure page="56" caption="Slide 56 · 前端 agent：定位组件/事件处理，修改逻辑与样式，在浏览器中验证行为与渲染"></SlideFigure>
+<SlideFigure lecture="06" page="56" caption="Slide 56 · 前端 agent：定位组件/事件处理，修改逻辑与样式，在浏览器中验证行为与渲染"></SlideFigure>
 
 验证方式有两类（Slide 57）：
 
 1. **Browser agent**：模型自己观察页面、选择动作、点击/输入，适合探索性任务；
 2. **Playwright script**：模型写一段可重复的测试脚本，用 `fill()`、`click()`、`expect()`、`screenshot()` 做断言。
 
-<SlideFigure page="57" caption="Slide 57 · 两种浏览器验证：自适应 browser agent 与可重复的 Playwright 脚本"></SlideFigure>
+<SlideFigure lecture="06" page="57" caption="Slide 57 · 两种浏览器验证：自适应 browser agent 与可重复的 Playwright 脚本"></SlideFigure>
 
 一个具体例子：表单允许空名字保存（Slide 58）。修复是把 `value.length` 改成 `value.trim().length`，然后验证：
 
@@ -586,14 +586,14 @@ Multi-harness training 则解决“模型只适配一个 agent 框架”的问�
 
 软件开发生命周期不只包含“改代码”（Slide 61）：
 
-<SlideFigure page="61" caption="Slide 61 · 从需求、实现、评审、部署、监控到维护：test pass 只是其中一步，不是发布决策"></SlideFigure>
+<SlideFigure lecture="06" page="61" caption="Slide 61 · 从需求、实现、评审、部署、监控到维护：test pass 只是其中一步，不是发布决策"></SlideFigure>
 
 - **Inner loop**：编辑、测试、调试、修复；
 - **Outer loop**：需求、代码评审、部署、监控、维护、回滚。
 
 Graham 引用 Microsoft 2019 年的开发者时间调查（5,928 个自报工作日，Slide 62）：
 
-<SlideFigure page="62" caption="Slide 62 · 开发者时间分布：编码只占 15%，会议/邮件 25%，调试 14%，测试 8%，评审 5%"></SlideFigure>
+<SlideFigure lecture="06" page="62" caption="Slide 62 · 开发者时间分布：编码只占 15%，会议/邮件 25%，调试 14%，测试 8%，评审 5%"></SlideFigure>
 
 这解释了为什么“会修 issue”只是 coding agent 的起点。真实软件工程中还有大量沟通、评审、运维工作，而它们的训练数据和验证器都更难构造。
 
@@ -624,7 +624,7 @@ Graham 引用 Microsoft 2019 年的开发者时间调查（5,928 个自报工作
 | SWT-Bench Verified（Test generation） | 9.01 | **16.86** |
 | Commit0 Lite（Library building） | 8.34 | **13.45** |
 
-<SlideFigure page="72" caption="Slide 72 · Hybrid-Gym：在多种开发任务上训练，可以迁移到 held-out 的修复、测试生成和库实现任务"></SlideFigure>
+<SlideFigure lecture="06" page="72" caption="Slide 72 · Hybrid-Gym：在多种开发任务上训练，可以迁移到 held-out 的修复、测试生成和库实现任务"></SlideFigure>
 
 这说明“软件工程技能”并不是完全任务特定的：定位、读代码、写测试、实现函数之间存在可迁移的共性。对课程项目来说，这也是一个值得探索的方向。
 
@@ -636,7 +636,7 @@ Graham 引用 Microsoft 2019 年的开发者时间调查（5,928 个自报工作
 
 Agent 每执行一个动作，环境会返回一个 observation。**World model** 试图学习 $p(o \mid h, a)$：给定历史 h 和动作 a，预测执行结果（Slide 74）。
 
-<SlideFigure page="74" caption="Slide 74 · World model：策略选择动作，真实环境返回 observation；世界模型尝试预测这个 observation"></SlideFigure>
+<SlideFigure lecture="06" page="74" caption="Slide 74 · World model：策略选择动作，真实环境返回 observation；世界模型尝试预测这个 observation"></SlideFigure>
 
 一个经典陷阱是引用/别名（Slide 75）：
 
@@ -666,7 +666,7 @@ World model 什么时候有用？（Slide 76）
 
 Graham 在结尾给出了一张“设计 coding agent”的清单（Slide 81）。把它展开成可操作的检查表：
 
-<SlideFigure page="81" caption="Slide 81 · 设计 coding agent 的六个维度"></SlideFigure>
+<SlideFigure lecture="06" page="81" caption="Slide 81 · 设计 coding agent 的六个维度"></SlideFigure>
 
 **1. Code model**
 

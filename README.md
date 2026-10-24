@@ -11,9 +11,34 @@ npm install
 npm run docs:dev
 ```
 
-已整理：
+已整理 15 讲详细讲义（按模块）：
 
-- [3b · Domains 1: Coding Agents 详细讲义](docs/notes/lecture-06-coding-agents.md)
+**Introduction & Agent Capabilities**
+
+- [1a · Course Overview](docs/notes/lecture-01-agents.md)
+- [1b · Tool Use](docs/notes/lecture-02-tool-use.md)
+- [2a · Long-Context Agents](docs/notes/lecture-03-long-context.md)
+- [2b · Skills & Memory](docs/notes/lecture-04-memory-and-skills.md)
+- [3a · Planning & Multi-Agent](docs/notes/lecture-05-planning.md)
+
+**Domains**
+
+- [3b · Coding Agents](docs/notes/lecture-06-coding-agents.md)
+- [4a · Computer Use Agents](docs/notes/lecture-07-computer-use-agents.md)
+- [5b · Deep Research Agents](docs/notes/lecture-10-deep-research-agents.md)
+
+**Training Methods**
+
+- [4b · SFT](docs/notes/lecture-08-sft.md)
+- [5a · RL Basics](docs/notes/lecture-09-rl-basics.md)
+- [6a · Advanced RL](docs/notes/lecture-11-rl-advanced.md)
+- [6b · RL Systems](docs/notes/lecture-12-rl-systems.md)
+
+**Safety & Frameworks**
+
+- [7a · Agent Safety](docs/notes/lecture-13-agent-safety.md)
+- [7b · OpenHands](docs/notes/lecture-14-openhands.md)
+- [9a · Orchestration and Monitoring](docs/notes/lecture-15-orchestration-and-monitoring.md)（暂无录像，基于 slides）
 
 ## 课程安排
 
