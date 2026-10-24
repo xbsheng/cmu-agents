@@ -1,7 +1,24 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig, type HeadConfig } from 'vitepress'
 
 const siteUrl = process.env.DOCS_URL || 'https://xbsheng.github.io/cmu-agents/'
 const base = process.env.DOCS_BASE || '/cmu-agents/'
+
+// 百度统计：只在生产构建注入（本地 dev 不污染数据）
+const analytics: HeadConfig[] = process.env.NODE_ENV === 'production'
+  ? [
+      [
+        'script',
+        {},
+        `var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?361f9907644aeac0e1c6e8df6fd8b00b";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();`
+      ]
+    ]
+  : []
 
 export default defineConfig({
   lang: 'zh-CN',
@@ -16,21 +33,7 @@ export default defineConfig({
     hostname: siteUrl
   },
   head: [
-    ...(process.env.NODE_ENV === 'production'
-      ? [
-          [
-            'script',
-            {},
-            `var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?361f9907644aeac0e1c6e8df6fd8b00b";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();`
-          ]
-        ]
-      : []),
+    ...analytics,
     ['link', { rel: 'icon', type: 'image/png', sizes: '64x64', href: `${base}favicon.png` }],
     ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: `${base}apple-touch-icon.png` }],
     ['meta', { name: 'theme-color', content: '#8b0000' }],
@@ -44,6 +47,13 @@ export default defineConfig({
   ],
   themeConfig: {
     logo: { src: '/logo-nav.png', alt: 'CMU 11-768 AI Agents' },
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/xbsheng/cmu-agents', ariaLabel: 'GitHub' }
+    ],
+    editLink: {
+      pattern: 'https://github.com/xbsheng/cmu-agents/edit/main/docs/:path',
+      text: '在 GitHub 上编辑此页'
+    },
     search: {
       provider: 'local',
       options: {
