@@ -11,7 +11,16 @@ export default {
       'doc-after': () => h(GiscusComments)
     })
   },
-  enhanceApp({ app }) {
+  enhanceApp({ app, router }) {
     app.component('SlideFigure', SlideFigure)
+    if (!import.meta.env.PROD || typeof window === 'undefined') return
+    // 百度统计不会自动上报 pushState 路由，手动补 PV
+    let last = location.pathname
+    router.onAfterRouteChanged = (href) => {
+      const path = new URL(href, location.origin).pathname
+      if (path === last) return
+      last = path
+      ;(window as any)._hmt?.push(['_trackPageview', path])
+    }
   }
 }

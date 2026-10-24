@@ -16,6 +16,21 @@ export default defineConfig({
     hostname: siteUrl
   },
   head: [
+    ...(process.env.NODE_ENV === 'production'
+      ? [
+          [
+            'script',
+            {},
+            `var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?361f9907644aeac0e1c6e8df6fd8b00b";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();`
+          ]
+        ]
+      : []),
     ['link', { rel: 'icon', type: 'image/png', sizes: '64x64', href: `${base}favicon.png` }],
     ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: `${base}apple-touch-icon.png` }],
     ['meta', { name: 'theme-color', content: '#8b0000' }],
