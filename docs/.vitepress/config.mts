@@ -29,6 +29,25 @@ export default defineConfig({
   ],
   themeConfig: {
     logo: { src: '/logo-nav.png', alt: 'CMU 11-768 AI Agents' },
+    search: {
+      provider: 'local',
+      options: {
+        translations: {
+          button: { buttonText: '搜索', buttonAriaLabel: '搜索' },
+          modal: {
+            displayDetails: '显示详情',
+            resetButtonTitle: '清除查询',
+            backButtonTitle: '返回',
+            noResultsText: '没有找到结果',
+            footer: {
+              selectText: '选择',
+              navigateText: '切换',
+              closeText: '关闭'
+            }
+          }
+        }
+      }
+    },
     nav: [
       { text: '课程笔记', link: '/notes/' },
       { text: '课程主页', link: 'https://www.cmu-agents.com' }

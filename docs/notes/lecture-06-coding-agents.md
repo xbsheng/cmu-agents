@@ -24,7 +24,7 @@ outline: [2, 3]
 - **训练与评测正在形成闭环。** SWE-bench 提供评测，SWE-Gym / SWE-smith 提供可执行训练环境，multi-harness training 让同一模型适配不同 agent 框架。
 - **软件工程远不止修 issue。** 需求、评审、部署、监控、维护、测试生成、CI 修复都是 agent 的潜在战场，但数据和验证器更难构造。
 
-## 0. 定位：从代码补全到软件工程
+## 1. 定位：从代码补全到软件工程
 
 Graham 先澄清了标题：本讲不只讲“会写代码的 agent”，而是讲**如何构造一个能在软件工程中工作的 agent**。他把 coding agent 分成三个层次（Slide 2）：
 
@@ -52,9 +52,9 @@ Graham 先澄清了标题：本讲不只讲“会写代码的 agent”，而是�
 **单步模型的能力边界**决定了 agent 的上限；**agentic loop 与工具设计**决定了这些能力能否被稳定调用；**可执行评测**则决定了我们能否可靠地训练和比较 agent。
 :::
 
-## 1. 单步代码模型：预训练与中训练
+## 2. 单步代码模型：预训练与中训练
 
-### 1.1 预训练：代码不是孤立语料
+### 2.1 预训练：代码不是孤立语料
 
 代码模型不能只在代码上训练。预训练语料通常是 **web text、technical prose、mathematics、source code、documentation** 的混合（Slide 7）。原因很直接：模型既要会写代码，也要能读懂 issue、文档、错误信息和自然语言需求。
 
@@ -74,7 +74,7 @@ $$
 
 一个历史细节：早期文本预处理会归一化空白（把连续空格压成一个），这对 Python 是灾难性的，因为缩进本身承载语义。代码模型必须保留 whitespace。
 
-### 1.2 数据清洗：代码分布很“重尾”
+### 2.2 数据清洗：代码分布很“重尾”
 
 代码数据的清洗比文本更难，因为代码有很多近乎重复的副本（Slide 8）：
 
@@ -85,7 +85,7 @@ $$
 
 讲师特别提到 license 与敏感数据：训练数据中可能包含 API key、私有代码或带限制的 license。工业界通常会用 TruffleHog 之类的工具做 secret scanning，并在数据管线中记录来源与退出机制。这些问题不只是法律问题，也会影响模型发布后的可持续性。
 
-### 1.3 分词：空白和标识符都是语义的一部分
+### 2.3 分词：空白和标识符都是语义的一部分
 
 代码分词的目标不是“把字符压得越短越好”，而是**在压缩率与可编辑性之间取平衡**（Slide 9）。
 
@@ -102,7 +102,7 @@ $$
 
 另一个实际问题是**语言偏置**：不指定语言时，模型默认写 Python；做 dashboard 时默认写 React。这既来自语言流行度，也来自 RL 阶段使用的解释器/工具链。讲师举了一个例子：让模型把 Python 数据管线改成 Rust，模型改完之后每次运行又调用 Python，必须反复强调 “in Rust” 才改正。
 
-### 1.4 规模：更多 token 通常更好，但不是所有语言都一样
+### 2.4 规模：更多 token 通常更好，但不是所有语言都一样
 
 StarCoderBase 的规模是 **15.5B 参数、1T tokens、80+ 种语言**，数据包含 source code、issues、commits、notebooks（Slide 10）。
 
@@ -115,7 +115,7 @@ StarCoderBase 的规模是 **15.5B 参数、1T tokens、80+ 种语言**，数据
 
 这也解释了一个常见现象：模型对 Python/JavaScript 很强，对冷门语言或特定领域 DSL 明显更弱。选语言不仅要看“用户想用什么”，还要看“训练数据够不够、工具链是否支持”。
 
-### 1.5 中训练：把通用模型“调”成代码模型
+### 2.5 中训练：把通用模型“调”成代码模型
 
 中训练（mid-training / continual pre-training）是在预训练之后、SFT/RL 之前的一段继续训练。目标不是从零学代码，而是**提高代码曝光、调整配比、扩展上下文**（Slide 11）。
 
@@ -140,7 +140,7 @@ Code Llama 的做法是：从 Llama 2 出发，额外训练 **500B tokens**，�
 把整个仓库塞进 context 并不等于“理解了仓库”。如果训练时没有见过跨文件的 coherent sequence，模型即使能看到 128K token，也不一定会利用远距离依赖。数据构造和位置编码同样重要。
 :::
 
-## 2. Infilling：让模型利用右侧上下文
+## 3. Infilling：让模型利用右侧上下文
 
 普通 causal LM 只能看左侧前缀。但代码编辑经常需要**同时看左右两侧**：给函数签名和函数体，推断返回类型；给变量使用处，推断声明；在文件中间插入代码（Slide 14）。
 
@@ -186,9 +186,9 @@ InCoder 的做法很巧妙：把 infilling 改写成 autoregressive 任务（Sli
 - **Tests**：program + test outcomes → reward，学习满足行为；
 - **Execution traces**：program → executed lines/states，学习程序语义。
 
-## 3. 代码生成怎么评
+## 4. 代码生成怎么评
 
-### 3.1 参考解匹配：看起来像，不等于行为对
+### 4.1 参考解匹配：看起来像，不等于行为对
 
 最直接的方法是把生成代码与参考解比较：exact match 或 BLEU-4（token n-gram overlap + brevity penalty）。问题是**文本相似度与行为正确性并不一致**（Slide 20）：
 
@@ -207,7 +207,7 @@ return not (x <= 0)
 
 这类指标适合快速回归或风格比较，但不能作为“代码是否正确”的主要依据。
 
-### 3.2 结构与表示：CodeBLEU 与 CodeBERTScore
+### 4.2 结构与表示：CodeBLEU 与 CodeBERTScore
 
 **CodeBLEU** 在 n-gram 之外加入两类结构信息（Slide 21）：
 
@@ -228,7 +228,7 @@ $$
 
 它比 BLEU 更能捕捉语义相似性，但仍然是“与参考解相似”的代理指标，不能替代执行。
 
-### 3.3 执行评测：主流，但测试质量是瓶颈
+### 4.3 执行评测：主流，但测试质量是瓶颈
 
 执行评测的流程很直接（Slide 23）：给候选代码一组输入和期望输出，在隔离环境中运行，比较实际输出。
 
@@ -262,7 +262,7 @@ def is_positive(x):
 
 这也是为什么 SWE-bench 只选一部分相关测试（fail-to-pass + pass-to-pass），而不是跑全量测试。
 
-### 3.4 Benchmark 与 pass@k
+### 4.4 Benchmark 与 pass@k
 
 单步代码生成的两个代表 benchmark（Slide 25）：
 
@@ -277,7 +277,7 @@ $$
 
 其中 n 是采样数，c 是通过测试的数量。k 越大，指标越宽松；比较不同模型时必须固定 k 和采样预算。
 
-### 3.5 非功能需求与 RL
+### 4.5 非功能需求与 RL
 
 代码不只是“输出对不对”，还要看性能、延迟、资源、可维护性、安全性（Slide 27）。NoFunEval 用 397 个 code-editing 任务评估这些维度：
 
@@ -307,7 +307,7 @@ RL 训练则把测试结果直接变成 reward（Slide 28）：
 
 <SlideFigure lecture="06" page="30" caption="Slide 30 · DeepCoder：RL 阶段 16K→32K response token，评测时扩到 64K；推理长度与准确率同步提升"></SlideFigure>
 
-## 4. Agentic coding：localize–edit–verify
+## 5. Agentic coding：localize–edit–verify
 
 单步模型处理的是自包含 prompt；真实仓库里的 issue 需要先找位置、再改、再验证（Slide 32）。
 
@@ -356,7 +356,7 @@ Ran 4 tests: OK
 
 这里的关键不是“改一行”，而是**把失败转化成对行为的假设**：`0` 是合法值，只有 `None` 才应该触发默认值。验证阶段同时检查零值、None、缺省和回归，避免修一个坏一个。
 
-### 4.1 另一条路：固定 workflow（Agentless）
+### 5.1 另一条路：固定 workflow（Agentless）
 
 Agentless 不做自由形式的工具调用，而是把仓库级修复拆成固定流水线（Slide 37）：
 
@@ -369,9 +369,9 @@ Agentless 不做自由形式的工具调用，而是把仓库级修复拆成固�
 
 讲师给了一个有意思的历史判断：在模型还不擅长 tool calling、但被大量训练做单步代码修复的时期，**固定 workflow 有时反而比 agent 更强**。随着模型 tool-use 能力提升，现在主流又回到了 agentic loop。这提醒我们：架构选择要和模型能力匹配，而不是盲目追求“更 agent”。
 
-## 5. 工具集：shell、edit、search
+## 6. 工具集：shell、edit、search
 
-### 5.1 只给一个 bash 工具
+### 6.1 只给一个 bash 工具
 
 mini-SWE-agent 的极简设计是：**只给模型一个 bash 接口**（Slide 39）。
 
@@ -398,7 +398,7 @@ mini-SWE-agent 的极简设计是：**只给模型一个 bash 接口**（Slide 3
 
 讲师估计 **85–90% 的 tool call 都是这些基本操作**。既然大多数调用都集中在少数操作上，把它们封装成更可靠的专用工具，通常比让模型每次都即兴拼 shell 更稳。
 
-### 5.2 编辑工具：格式决定成败
+### 6.2 编辑工具：格式决定成败
 
 最常见的三类编辑接口（Slide 41）：
 
@@ -447,7 +447,7 @@ Codex 的 file-operation patch 则用文件操作 + 上下文，不依赖行号�
 
 Search/replace 的一个典型失败模式是**重复片段**：文件里有多处 `retries = 3`，模型无法消歧。解决办法是让模型写更多上下文，直到匹配唯一。这个代价通常小于 unified diff 数错行号的代价，所以大多数 agent 最终选择 search/replace 或简化 diff。
 
-### 5.3 找代码：从 rg 到 dependency graph
+### 6.3 找代码：从 rg 到 dependency graph
 
 定位通常从症状出发（Slide 44）：一个 flag、一个 loader、一个 retry loop 都可能匹配。更可靠的做法是**跟随值**：
 
@@ -460,9 +460,9 @@ Search/replace 的一个典型失败模式是**重复片段**：文件里有多�
 
 但讲师的经验是：**复杂的定位工具不一定比简单搜索更好**。很多情况下，`rg` + 读文件 + 跑测试已经足够；dependency graph 更适合大型仓库或明确的跨文件依赖，否则容易引入额外复杂度。
 
-## 6. Agent 的评测与训练
+## 7. Agent 的评测与训练
 
-### 6.1 SWE-bench：issue 解析的“黄金标准”
+### 7.1 SWE-bench：issue 解析的“黄金标准”
 
 SWE-bench 的构造方式（Slide 47）：
 
@@ -483,7 +483,7 @@ SWE-bench 的构造方式（Slide 47）：
 
 SWE-bench 的工程难点在于环境：Django、NumPy 这类仓库跑全量测试非常慢，所以只选与 issue 相关的子集；依赖版本、镜像、测试命令都必须固定，否则分数不可比。
 
-### 6.2 可执行训练任务与 RL
+### 7.2 可执行训练任务与 RL
 
 要训练 agent，光有评测集不够，还需要**可执行的训练环境**（Slide 48）：
 
@@ -505,7 +505,7 @@ $$
 
 SWE-Gym 的思路是构造大量可执行环境，并在这些环境上做 RL（Slide 50）。讲师提到，一个原本约 **11%** 成功率的模型，仅用 **500 个训练环境**就能明显提升；此外还可以在推理时生成多个候选并用 learned verifier 选择，获得 inference-time scaling。
 
-### 6.3 SWE-smith：用注入 bug 造数据
+### 7.3 SWE-smith：用注入 bug 造数据
 
 真实 PR 数据有限，SWE-smith 用**变异测试**的思路造数据（Slide 51）：
 
@@ -540,7 +540,7 @@ return 3 if not value else value
 - 变异可能产生不自然或不可修复的代码；
 - 测试仍然是唯一的 verifier，测试弱则数据质量差。
 
-### 6.4 多语言与 multi-harness
+### 7.4 多语言与 multi-harness
 
 跨语言不是“把 Python 换成 Rust”这么简单（Slide 53）：项目配置、依赖管理、测试命令都不同。
 
@@ -559,7 +559,7 @@ Multi-harness training 则解决“模型只适配一个 agent 框架”的问�
 - Nemotron 3 Ultra 的做法是每个任务分布至少用 2 个 harness；
 - Polar 则让原生 harness 调用共享的 model API proxy，统一训练信号。
 
-## 7. 前端开发：在浏览器里验证
+## 8. 前端开发：在浏览器里验证
 
 前端任务的循环仍然是 localize → edit → verify，但 verify 发生在浏览器里（Slide 56）：
 
@@ -582,7 +582,7 @@ Multi-harness training 则解决“模型只适配一个 agent 框架”的问�
 
 一个反直觉的观察：GLM 5.2 不是多模态模型，却在 frontend design arena 上排到第一。这说明前端能力不只取决于视觉输入，代码生成、布局知识和审美偏好同样重要；但讲师仍认为多模态行为对前端 agent 很重要。
 
-## 8. 更广泛的软件工程
+## 9. 更广泛的软件工程
 
 软件开发生命周期不只包含“改代码”（Slide 61）：
 
@@ -628,7 +628,7 @@ Graham 引用 Microsoft 2019 年的开发者时间调查（5,928 个自报工作
 
 这说明“软件工程技能”并不是完全任务特定的：定位、读代码、写测试、实现函数之间存在可迁移的共性。对课程项目来说，这也是一个值得探索的方向。
 
-## 9. 预测代码行为（讲师未展开）
+## 10. 预测代码行为（讲师未展开）
 
 ::: warning 说明
 这一节对应 Slides 73–79。由于课堂时间不够，Graham 明确说“不展开 code world models”，只保留了 slides。以下内容按课件整理，属于补充阅读，不是课堂讲解。
@@ -662,7 +662,7 @@ World model 什么时候有用？（Slide 76）
 - **New settings?** 按 program、dependency、environment 做 held-out；
 - **When to execute?** 变化 fallback threshold，既测节省也测失败。
 
-## 10. 设计清单
+## 11. 设计清单
 
 Graham 在结尾给出了一张“设计 coding agent”的清单（Slide 81）。把它展开成可操作的检查表：
 
