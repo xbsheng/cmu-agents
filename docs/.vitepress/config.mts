@@ -100,7 +100,7 @@ export default defineConfig({
     lightModeSwitchTitle: '切换到浅色模式',
     darkModeSwitchTitle: '切换到深色模式',
     footer: {
-      message: '基于 CMU 11-768 课程公开材料整理，仅供学习使用。',
+      message: '基于 CMU 11-768 课程公开材料整理，仅供学习使用',
       copyright: 'Course materials © Carnegie Mellon University'
     }
   },

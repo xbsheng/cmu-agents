@@ -4,7 +4,7 @@ layout: home
 hero:
   name: CMU 11-768
   text: AI Agents
-  tagline: 课程中文详细讲义 · 从工具使用到软件工程
+  tagline: 卡内基梅隆大学 AI Agents 课程中文详细讲义
   image:
     src: /logo.png
     alt: CMU 11-768 AI Agents 课程标志
