@@ -2,13 +2,17 @@ import { h } from 'vue'
 import DefaultTheme from 'vitepress/theme'
 import SlideFigure from './components/SlideFigure.vue'
 import GiscusComments from './components/GiscusComments.vue'
+import VersionSwitch from './components/VersionSwitch.vue'
+import NotFound from './components/NotFound.vue'
 import './custom.css'
 
 export default {
   extends: DefaultTheme,
   Layout() {
     return h(DefaultTheme.Layout, null, {
-      'doc-after': () => h(GiscusComments)
+      'doc-before': () => h(VersionSwitch),
+      'doc-after': () => h(GiscusComments),
+      'not-found': () => h(NotFound)
     })
   },
   enhanceApp({ app, router }) {

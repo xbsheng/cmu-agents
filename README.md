@@ -35,6 +35,12 @@
 - [7b · OpenHands](docs/notes/lecture-14-openhands.md)
 - [9a · Orchestration and Monitoring](docs/notes/lecture-15-orchestration-and-monitoring.md)（暂无录像，基于 slides）
 
+## 精华版
+
+15 讲各有一张 5 分钟速读卡，另有 75 分钟学习路线、系统栈与跨讲对照表：[精华版总览](docs/essence/index.md)。
+
+在线阅读时，顶部导航可在「课程笔记」与「精华版」之间切换；每一讲的两种版本页一一对应。
+
 ## 课程安排
 
 ### 1a · Tue, Aug 25 — Course Overview: What Is an Agent?

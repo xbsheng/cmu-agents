@@ -20,7 +20,7 @@ const altText = computed(() => props.alt || props.caption || `Slide ${props.page
 <template>
   <figure>
     <a :href="src" target="_blank" rel="noreferrer">
-      <img :src="src" :alt="altText" loading="lazy" />
+      <img :src="src" :alt="altText" loading="lazy" decoding="async" />
     </a>
     <figcaption v-if="caption">
       <span v-html="caption"></span>

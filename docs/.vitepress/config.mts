@@ -2,6 +2,9 @@ import { defineConfig, type HeadConfig } from 'vitepress'
 
 const siteUrl = process.env.DOCS_URL || 'https://xbsheng.github.io/cmu-agents/'
 const base = process.env.DOCS_BASE || '/cmu-agents/'
+const siteTitle = 'CMU AI Agents 讲义'
+const siteDescription = '卡内基梅隆大学 11-768 AI Agents 课程中文详细讲义与精华版'
+const canonicalBase = siteUrl.endsWith('/') ? siteUrl : `${siteUrl}/`
 
 // 百度统计：只在生产构建注入（本地 dev 不污染数据）
 const analytics: HeadConfig[] = process.env.NODE_ENV === 'production'
@@ -22,15 +25,16 @@ const analytics: HeadConfig[] = process.env.NODE_ENV === 'production'
 
 export default defineConfig({
   lang: 'zh-CN',
-  title: 'CMU AI Agents 讲义',
-  description: '卡内基梅隆大学 11-768 AI Agents 课程中文详细讲义',
+  title: siteTitle,
+  description: siteDescription,
   // Project site on GitHub Pages: https://xbsheng.github.io/cmu-agents/
   // Override with DOCS_BASE=/ when deploying to a custom domain.
   base,
   cleanUrls: true,
   lastUpdated: true,
   sitemap: {
-    hostname: siteUrl
+    hostname: siteUrl,
+    transformItems: (items) => items.filter((item) => !item.url.endsWith('404'))
   },
   head: [
     ...analytics,
@@ -39,12 +43,36 @@ export default defineConfig({
     ['meta', { name: 'theme-color', content: '#8b0000' }],
     ['meta', { name: 'theme-color', content: '#121212', media: '(prefers-color-scheme: dark)' }],
     ['meta', { name: 'format-detection', content: 'telephone=no' }],
-    ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:site_name', content: 'CMU 11-768 · AI Agents' }],
-    ['meta', { property: 'og:title', content: 'CMU 11-768 · AI Agents 中文讲义' }],
-    ['meta', { property: 'og:description', content: '卡内基梅隆大学 11-768 AI Agents 课程中文详细讲义，共 15 讲。' }],
-    ['meta', { property: 'og:image', content: `${siteUrl}logo.png` }]
+    ['meta', { property: 'og:locale', content: 'zh_CN' }],
+    ['meta', { property: 'og:image', content: `${canonicalBase}logo.png` }],
+    ['meta', { property: 'og:image:alt', content: 'CMU 11-768 AI Agents 课程标志' }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:image', content: `${canonicalBase}logo.png` }]
   ],
+  transformHead({ pageData }): HeadConfig[] {
+    if (pageData.relativePath === '404.md') return []
+
+    const rel = pageData.relativePath
+      .replace(/\.md$/, '')
+      .replace(/(^|\/)index$/, '$1')
+    const canonical = new URL(rel, canonicalBase).href
+    const title = pageData.title && pageData.title !== siteTitle
+      ? `${pageData.title} | ${siteTitle}`
+      : siteTitle
+    const description = pageData.frontmatter.description || siteDescription
+    const isArticle = /^(notes|essence)\/lecture-/.test(pageData.relativePath)
+
+    return [
+      ['link', { rel: 'canonical', href: canonical }],
+      ['meta', { property: 'og:title', content: title }],
+      ['meta', { property: 'og:description', content: description }],
+      ['meta', { property: 'og:url', content: canonical }],
+      ['meta', { property: 'og:type', content: isArticle ? 'article' : 'website' }],
+      ['meta', { name: 'twitter:title', content: title }],
+      ['meta', { name: 'twitter:description', content: description }]
+    ]
+  },
   themeConfig: {
     logo: { src: '/logo-nav.png', alt: 'CMU 11-768 AI Agents' },
     socialLinks: [
@@ -74,7 +102,8 @@ export default defineConfig({
       }
     },
     nav: [
-      { text: '课程笔记', link: '/notes/' },
+      { text: '课程笔记', link: '/notes/', activeMatch: '/notes/' },
+      { text: '精华版', link: '/essence/', activeMatch: '/essence/' },
       { text: '课程主页', link: 'https://www.cmu-agents.com' }
     ],
     sidebar: {
@@ -114,12 +143,54 @@ export default defineConfig({
             { text: '9a · 编排与监控', link: '/notes/lecture-15-orchestration-and-monitoring' }
           ]
         }
+      ],
+      '/essence/': [
+        {
+          text: '开始',
+          items: [{ text: '总览 · 75 分钟路线', link: '/essence/' }]
+        },
+        {
+          text: '导论与 Agent 能力',
+          items: [
+            { text: '1a · 课程概览', link: '/essence/lecture-01-agents' },
+            { text: '1b · Tool Use', link: '/essence/lecture-02-tool-use' },
+            { text: '2a · 长上下文 Agent', link: '/essence/lecture-03-long-context' },
+            { text: '2b · Skills & Memory', link: '/essence/lecture-04-memory-and-skills' },
+            { text: '3a · Planning 与多 Agent', link: '/essence/lecture-05-planning' }
+          ]
+        },
+        {
+          text: '应用领域',
+          items: [
+            { text: '3b · Coding Agent', link: '/essence/lecture-06-coding-agents' },
+            { text: '4a · Computer Use Agent', link: '/essence/lecture-07-computer-use-agents' },
+            { text: '5b · Deep Research Agent', link: '/essence/lecture-10-deep-research-agents' }
+          ]
+        },
+        {
+          text: '训练方法',
+          items: [
+            { text: '4b · SFT', link: '/essence/lecture-08-sft' },
+            { text: '5a · RL 基础', link: '/essence/lecture-09-rl-basics' },
+            { text: '6a · RL 高级', link: '/essence/lecture-11-rl-advanced' },
+            { text: '6b · RL 系统', link: '/essence/lecture-12-rl-systems' }
+          ]
+        },
+        {
+          text: '安全与框架',
+          items: [
+            { text: '7a · Agent 安全', link: '/essence/lecture-13-agent-safety' },
+            { text: '7b · OpenHands', link: '/essence/lecture-14-openhands' },
+            { text: '9a · 编排与监控', link: '/essence/lecture-15-orchestration-and-monitoring' }
+          ]
+        }
       ]
     },
     outline: { level: [2, 3], label: '本页目录' },
     docFooter: { prev: '上一篇', next: '下一篇' },
     lastUpdatedText: '最后更新',
     returnToTopLabel: '回到顶部',
+    skipToContentLabel: '跳转到正文',
     sidebarMenuLabel: '目录',
     darkModeSwitchLabel: '主题',
     lightModeSwitchTitle: '切换到浅色模式',
