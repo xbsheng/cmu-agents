@@ -60,96 +60,13 @@ outline: [2, 3]
 
 ## 15 讲速读 {#lectures}
 
-<div class="module">
-  <div class="module__head"><h3>导论与 Agent 能力</h3><span>5 讲 · 约 25 分钟</span></div>
-  <a class="lecture-row" href="./lecture-01-agents">
-    <span class="lecture-row__no">1a</span>
-    <span class="lecture-row__body"><strong>课程概览：什么是 Agent？</strong><span>Agent = 模型在循环里；能力上限由模型、harness、环境与评测共同决定。</span></span>
-    <span class="lecture-row__meta">5 分钟</span>
-  </a>
-  <a class="lecture-row" href="./lecture-02-tool-use">
-    <span class="lecture-row__no">1b</span>
-    <span class="lecture-row__body"><strong>Tool Use：把语言变成动作</strong><span>模型只提议调用，harness 负责执行；工具调用在实现上就是 token。</span></span>
-    <span class="lecture-row__meta">5 分钟</span>
-  </a>
-  <a class="lecture-row" href="./lecture-03-long-context">
-    <span class="lecture-row__no">2a</span>
-    <span class="lecture-row__body"><strong>长上下文：容量与成本</strong><span>上下文成本随轮数二次增长；容量与效率要分开优化，缓存和压缩各管一半。</span></span>
-    <span class="lecture-row__meta">5 分钟</span>
-  </a>
-  <a class="lecture-row" href="./lecture-04-memory-and-skills">
-    <span class="lecture-row__no">2b</span>
-    <span class="lecture-row__body"><strong>Skills &amp; Memory：不从头开始</strong><span>不把经验写进权重，也能让 agent 变强；skill 与 memory 是可检查的外部工件。</span></span>
-    <span class="lecture-row__meta">5 分钟</span>
-  </a>
-  <a class="lecture-row" href="./lecture-05-planning">
-    <span class="lecture-row__no">3a</span>
-    <span class="lecture-row__body"><strong>Planning 与多 Agent</strong><span>计划是对未来行为的显式表示；多 agent 的收益来自更好的分解与重规划。</span></span>
-    <span class="lecture-row__meta">5 分钟</span>
-  </a>
-</div>
+<CourseCards module="intro" />
 
-<div class="module">
-  <div class="module__head"><h3>应用领域</h3><span>3 讲 · 约 15 分钟</span></div>
-  <a class="lecture-row" href="./lecture-06-coding-agents">
-    <span class="lecture-row__no">3b</span>
-    <span class="lecture-row__body"><strong>Coding Agent</strong><span>核心循环是 localize → edit → verify；评测靠执行，工具设计直接影响成绩。</span></span>
-    <span class="lecture-row__meta">5 分钟</span>
-  </a>
-  <a class="lecture-row" href="./lecture-07-computer-use-agents">
-    <span class="lecture-row__no">4a</span>
-    <span class="lecture-row__body"><strong>Computer Use Agent</strong><span>CUA 在人类界面上工作；动作、结果、过程三层评测不能混成一个分数。</span></span>
-    <span class="lecture-row__meta">5 分钟</span>
-  </a>
-  <a class="lecture-row" href="./lecture-10-deep-research-agents">
-    <span class="lecture-row__no">5b</span>
-    <span class="lecture-row__body"><strong>Deep Research Agent</strong><span>多轮检索与综合；长答案要用 rubric 与引用支撑来评，不能靠相似度。</span></span>
-    <span class="lecture-row__meta">5 分钟</span>
-  </a>
-</div>
+<CourseCards module="domains" />
 
-<div class="module">
-  <div class="module__head"><h3>训练方法</h3><span>4 讲 · 约 20 分钟</span></div>
-  <a class="lecture-row" href="./lecture-08-sft">
-    <span class="lecture-row__no">4b</span>
-    <span class="lecture-row__body"><strong>SFT：把轨迹写进权重</strong><span>模板、掩码与数据选择比超参数更关键；SFT 是 RL 的冷启动，不是终点。</span></span>
-    <span class="lecture-row__meta">5 分钟</span>
-  </a>
-  <a class="lecture-row" href="./lecture-09-rl-basics">
-    <span class="lecture-row__no">5a</span>
-    <span class="lecture-row__body"><strong>RL 基础：从 REINFORCE 到 GRPO</strong><span>RL 只做三件事：采样、打分、按权重更新；各算法只差一个权重 w_t。</span></span>
-    <span class="lecture-row__meta">5 分钟</span>
-  </a>
-  <a class="lecture-row" href="./lecture-11-rl-advanced">
-    <span class="lecture-row__no">6a</span>
-    <span class="lecture-row__body"><strong>RL 高级：信用、异步与奖励</strong><span>agentic RL 的难点是信用分配、陈旧 rollout 与奖励可靠性，不是公式本身。</span></span>
-    <span class="lecture-row__meta">5 分钟</span>
-  </a>
-  <a class="lecture-row" href="./lecture-12-rl-systems">
-    <span class="lecture-row__no">6b</span>
-    <span class="lecture-row__body"><strong>RL 系统：两个引擎</strong><span>RL 系统 = 推理引擎 + 训练引擎 + 两者之间的接缝；轨迹要以 token 传输。</span></span>
-    <span class="lecture-row__meta">5 分钟</span>
-  </a>
-</div>
+<CourseCards module="training" />
 
-<div class="module">
-  <div class="module__head"><h3>安全与框架</h3><span>3 讲 · 约 15 分钟</span></div>
-  <a class="lecture-row" href="./lecture-13-agent-safety">
-    <span class="lecture-row__no">7a</span>
-    <span class="lecture-row__body"><strong>Agent 安全：权限、沙箱与监控</strong><span>安全是权限与边界设计；不可逆动作必须有人工闸门，检查要发生在执行前。</span></span>
-    <span class="lecture-row__meta">5 分钟</span>
-  </a>
-  <a class="lecture-row" href="./lecture-14-openhands">
-    <span class="lecture-row__no">7b</span>
-    <span class="lecture-row__body"><strong>OpenHands：harness 的工程学</strong><span>产品能不能用，往往取决于工具集、上下文、隔离与界面；默认先试单 agent。</span></span>
-    <span class="lecture-row__meta">5 分钟</span>
-  </a>
-  <a class="lecture-row" href="./lecture-15-orchestration-and-monitoring">
-    <span class="lecture-row__no">9a</span>
-    <span class="lecture-row__body"><strong>编排与监控：把行为写进图</strong><span>工作流把决策写进代码；trace 与监控让“应该发生什么”变成“实际发生了什么”。</span></span>
-    <span class="lecture-row__meta">5 分钟</span>
-  </a>
-</div>
+<CourseCards module="safety" />
 
 ## 一张对照表 {#contrast}
 

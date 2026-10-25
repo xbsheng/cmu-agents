@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Render selected slides of one lecture to PNG for the VitePress notes.
+"""Render selected slides of one lecture to WebP for the VitePress notes.
 
 Usage:
     python3 scripts/render_slides.py 07 2 3 5 9
 """
+import io
 import sys
 from pathlib import Path
 import pymupdf
@@ -28,6 +29,7 @@ SLUGS = {
     '15': 'lecture-15-orchestration-and-monitoring',
 }
 SCALE = 2.0
+WEBP_QUALITY = 82
 
 
 def main():
@@ -44,11 +46,13 @@ def main():
         if not 1 <= n <= len(doc):
             print(f'skip p{n}: out of range (1..{len(doc)})')
             continue
-        path = out_dir / f'p{n:02d}.png'
+        path = out_dir / f'p{n:02d}.webp'
         pix = doc[n - 1].get_pixmap(matrix=pymupdf.Matrix(SCALE, SCALE), alpha=False)
-        pix.save(path)
-        im = Image.open(path).convert('RGB')
-        im.save(path, optimize=True, compress_level=9)
+        im = Image.open(io.BytesIO(pix.tobytes('png'))).convert('RGB')
+        im.save(path, 'WEBP', quality=WEBP_QUALITY, method=6)
+        legacy_png = path.with_suffix('.png')
+        if legacy_png.exists():
+            legacy_png.unlink()
         print(f'{path.relative_to(ROOT)} {im.width}x{im.height} {path.stat().st_size // 1024}KB')
 
 

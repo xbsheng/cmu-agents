@@ -95,10 +95,11 @@
   overflow-x: auto;
 }
 
-.vp-doc mjx-container[jax='SVG'] {
+.vp-doc .katex-display {
   max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
+  padding: 2px 0;
 }
 
 .vp-doc .lead {
@@ -769,5 +770,34 @@
   .notes-index .vp-doc th:nth-child(4),
   .notes-index .vp-doc td:nth-child(4) {
     width: 5rem;
+  }
+}
+
+/* 搜索结果版本标签 */
+.VPLocalSearchBox .result[href*='/notes/'] .title.main::after,
+.VPLocalSearchBox .result[href*='/essence/'] .title.main::after {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 5px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 3px;
+  color: var(--vp-c-text-2);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 16px;
+  vertical-align: 1px;
+  content: '详细';
+}
+
+.VPLocalSearchBox .result[href*='/essence/'] .title.main::after {
+  border-color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft);
+  content: '精华';
+}
+
+@media (max-width: 640px) {
+  .vp-doc .katex {
+    font-size: 0.9em;
   }
 }

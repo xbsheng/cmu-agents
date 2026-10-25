@@ -12,7 +12,7 @@ const props = defineProps<{
 const src = computed(() => {
   const lec = String(props.lecture).padStart(2, '0')
   const n = String(props.page).padStart(2, '0')
-  return withBase(`/images/lecture-${lec}/p${n}.png`)
+  return withBase(`/images/lecture-${lec}/p${n}.webp`)
 })
 const altText = computed(() => props.alt || props.caption || `Slide ${props.page}`)
 </script>

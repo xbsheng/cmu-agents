@@ -41,6 +41,15 @@
 
 在线阅读时，顶部导航可在「课程笔记」与「精华版」之间切换；每一讲的两种版本页一一对应。
 
+## 本地校验
+
+```bash
+npm run docs:build
+npm run docs:check
+```
+
+`docs:check` 会检查站内链接、幻灯片图片引用、sitemap 和 KaTeX 渲染错误；CI 在构建后自动执行。
+
 ## 课程安排
 
 ### 1a · Tue, Aug 25 — Course Overview: What Is an Agent?

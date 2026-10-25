@@ -1,4 +1,9 @@
 import { defineConfig, type HeadConfig } from 'vitepress'
+import markdownItKatex from '@vscode/markdown-it-katex'
+import katex from 'katex'
+import { essenceSidebar, notesSidebar } from './course'
+
+const katexPlugin = (markdownItKatex as unknown as { default?: unknown }).default ?? markdownItKatex
 
 const siteUrl = process.env.DOCS_URL || 'https://xbsheng.github.io/cmu-agents/'
 const base = process.env.DOCS_BASE || '/cmu-agents/'
@@ -31,6 +36,8 @@ export default defineConfig({
   // Override with DOCS_BASE=/ when deploying to a custom domain.
   base,
   cleanUrls: true,
+  // 页面 chunk 较大，关闭全量预取；首次访问少拉几百 KB，点击时再加载目标页。
+  router: { prefetchLinks: false },
   lastUpdated: true,
   sitemap: {
     hostname: siteUrl,
@@ -45,10 +52,13 @@ export default defineConfig({
     ['meta', { name: 'format-detection', content: 'telephone=no' }],
     ['meta', { property: 'og:site_name', content: 'CMU 11-768 · AI Agents' }],
     ['meta', { property: 'og:locale', content: 'zh_CN' }],
-    ['meta', { property: 'og:image', content: `${canonicalBase}logo.png` }],
-    ['meta', { property: 'og:image:alt', content: 'CMU 11-768 AI Agents 课程标志' }],
+    ['meta', { property: 'og:image', content: `${canonicalBase}og-image.png` }],
+    ['meta', { property: 'og:image:type', content: 'image/png' }],
+    ['meta', { property: 'og:image:width', content: '1200' }],
+    ['meta', { property: 'og:image:height', content: '630' }],
+    ['meta', { property: 'og:image:alt', content: 'CMU 11-768 AI Agents 中文讲义' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
-    ['meta', { name: 'twitter:image', content: `${canonicalBase}logo.png` }]
+    ['meta', { name: 'twitter:image', content: `${canonicalBase}og-image.png` }]
   ],
   transformHead({ pageData }): HeadConfig[] {
     if (pageData.relativePath === '404.md') return []
@@ -107,84 +117,8 @@ export default defineConfig({
       { text: '课程主页', link: 'https://www.cmu-agents.com' }
     ],
     sidebar: {
-      '/notes/': [
-        {
-          text: '导论与 Agent 能力',
-          items: [
-            { text: '1a · 课程概览', link: '/notes/lecture-01-agents' },
-            { text: '1b · Tool Use', link: '/notes/lecture-02-tool-use' },
-            { text: '2a · 长上下文 Agent', link: '/notes/lecture-03-long-context' },
-            { text: '2b · Skills & Memory', link: '/notes/lecture-04-memory-and-skills' },
-            { text: '3a · Planning与多 Agent', link: '/notes/lecture-05-planning' }
-          ]
-        },
-        {
-          text: '应用领域',
-          items: [
-            { text: '3b · Coding Agent', link: '/notes/lecture-06-coding-agents' },
-            { text: '4a · Computer Use Agent', link: '/notes/lecture-07-computer-use-agents' },
-            { text: '5b · Deep Research Agent', link: '/notes/lecture-10-deep-research-agents' }
-          ]
-        },
-        {
-          text: '训练方法',
-          items: [
-            { text: '4b · SFT', link: '/notes/lecture-08-sft' },
-            { text: '5a · RL 基础', link: '/notes/lecture-09-rl-basics' },
-            { text: '6a · RL 高级', link: '/notes/lecture-11-rl-advanced' },
-            { text: '6b · RL 系统', link: '/notes/lecture-12-rl-systems' }
-          ]
-        },
-        {
-          text: '安全与框架',
-          items: [
-            { text: '7a · Agent 安全', link: '/notes/lecture-13-agent-safety' },
-            { text: '7b · OpenHands', link: '/notes/lecture-14-openhands' },
-            { text: '9a · 编排与监控', link: '/notes/lecture-15-orchestration-and-monitoring' }
-          ]
-        }
-      ],
-      '/essence/': [
-        {
-          text: '开始',
-          items: [{ text: '总览 · 75 分钟路线', link: '/essence/' }]
-        },
-        {
-          text: '导论与 Agent 能力',
-          items: [
-            { text: '1a · 课程概览', link: '/essence/lecture-01-agents' },
-            { text: '1b · Tool Use', link: '/essence/lecture-02-tool-use' },
-            { text: '2a · 长上下文 Agent', link: '/essence/lecture-03-long-context' },
-            { text: '2b · Skills & Memory', link: '/essence/lecture-04-memory-and-skills' },
-            { text: '3a · Planning 与多 Agent', link: '/essence/lecture-05-planning' }
-          ]
-        },
-        {
-          text: '应用领域',
-          items: [
-            { text: '3b · Coding Agent', link: '/essence/lecture-06-coding-agents' },
-            { text: '4a · Computer Use Agent', link: '/essence/lecture-07-computer-use-agents' },
-            { text: '5b · Deep Research Agent', link: '/essence/lecture-10-deep-research-agents' }
-          ]
-        },
-        {
-          text: '训练方法',
-          items: [
-            { text: '4b · SFT', link: '/essence/lecture-08-sft' },
-            { text: '5a · RL 基础', link: '/essence/lecture-09-rl-basics' },
-            { text: '6a · RL 高级', link: '/essence/lecture-11-rl-advanced' },
-            { text: '6b · RL 系统', link: '/essence/lecture-12-rl-systems' }
-          ]
-        },
-        {
-          text: '安全与框架',
-          items: [
-            { text: '7a · Agent 安全', link: '/essence/lecture-13-agent-safety' },
-            { text: '7b · OpenHands', link: '/essence/lecture-14-openhands' },
-            { text: '9a · 编排与监控', link: '/essence/lecture-15-orchestration-and-monitoring' }
-          ]
-        }
-      ]
+      '/notes/': notesSidebar,
+      '/essence/': essenceSidebar
     },
     outline: { level: [2, 3], label: '本页目录' },
     docFooter: { prev: '上一篇', next: '下一篇' },
@@ -202,6 +136,7 @@ export default defineConfig({
   },
   markdown: {
     lineNumbers: true,
-    math: true
+    math: false,
+    config: (md) => md.use(katexPlugin as Parameters<typeof md.use>[0], { katex, throwOnError: true, strict: 'ignore' })
   }
 })

@@ -5,11 +5,13 @@
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "docs:check": "node scripts/check-docs.mjs"
   },
   "devDependencies": {
     "@types/node": "^26.6.5",
-    "markdown-it-mathjax3": "^4.3.2",
+    "@vscode/markdown-it-katex": "^1.1.2",
+    "katex": "^0.16.47",
     "vitepress": "1.6.4"
   }
 }
